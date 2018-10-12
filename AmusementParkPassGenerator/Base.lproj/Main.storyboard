@@ -23,33 +23,45 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yjX-7b-23u">
                                         <rect key="frame" x="40" y="0.0" width="688" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfi-9W-Dgl">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfi-9W-Dgl">
                                                 <rect key="frame" x="0.0" y="0.0" width="172" height="70"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <state key="normal" title="Guest">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="guestChosen" destination="BYZ-38-t0r" eventType="touchUpInside" id="aiI-if-4zt"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAp-FM-dfo">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAp-FM-dfo">
                                                 <rect key="frame" x="172" y="0.0" width="172" height="70"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <state key="normal" title="Employee">
-                                                    <color key="titleColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="employeeChosen" destination="BYZ-38-t0r" eventType="touchUpInside" id="aQF-dc-wNG"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8E-Yx-Q6P">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8E-Yx-Q6P">
                                                 <rect key="frame" x="344" y="0.0" width="172" height="70"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <state key="normal" title="Manager">
-                                                    <color key="titleColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="managerChosen" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nfd-xX-LLd"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AqL-Pg-a2T">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AqL-Pg-a2T">
                                                 <rect key="frame" x="516" y="0.0" width="172" height="70"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <state key="normal" title="Vendor">
-                                                    <color key="titleColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="vendorChosen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G3T-UF-Eug"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -375,6 +387,9 @@
                                         <state key="normal" title="Generate Pass">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="generatePass" destination="BYZ-38-t0r" eventType="touchUpInside" id="B5A-SH-pYS"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwY-0U-DFE">
                                         <rect key="frame" x="368" y="0.0" width="336" height="60"/>
@@ -386,6 +401,9 @@
                                         <state key="normal" title="Populate Data">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="populateData" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKP-8l-hY6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -431,6 +449,33 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="QYd-w5-Msa" id="fCB-LL-Dio"/>
+                        <outlet property="cityTextField" destination="bdt-GB-cEZ" id="w5U-Ri-WcK"/>
+                        <outlet property="companyLabel" destination="9cz-uY-C49" id="PjD-pm-BbH"/>
+                        <outlet property="companyTextField" destination="ujq-Iw-6tM" id="SeI-nm-C2k"/>
+                        <outlet property="dateOfBirthLabel" destination="HVS-xg-00s" id="Tq5-Tz-EkJ"/>
+                        <outlet property="dateOfBirthTextField" destination="4iy-as-Zth" id="Uug-hK-AWp"/>
+                        <outlet property="employeeButton" destination="mAp-FM-dfo" id="HWp-bw-qrn"/>
+                        <outlet property="entrantSubtypeStackView" destination="dgW-Ea-9ql" id="NDi-YI-1Fd"/>
+                        <outlet property="firstNameLabel" destination="Iqm-V0-m1A" id="a0z-6A-hTJ"/>
+                        <outlet property="firstNameTextField" destination="Irj-A7-EYC" id="nUF-Oj-Ez6"/>
+                        <outlet property="guestButton" destination="zfi-9W-Dgl" id="OOK-jR-MNk"/>
+                        <outlet property="lastNameLabel" destination="oPQ-8u-xc1" id="y0D-NQ-gy0"/>
+                        <outlet property="lastNameTextField" destination="dyn-Lh-Z13" id="9Fl-vN-CPO"/>
+                        <outlet property="managerButton" destination="r8E-Yx-Q6P" id="27C-lv-Nmr"/>
+                        <outlet property="projectNumberLabel" destination="Hoh-ii-9rk" id="a7O-lG-rP2"/>
+                        <outlet property="projectNumberTextField" destination="Vq2-mU-5a3" id="ugs-nA-2eo"/>
+                        <outlet property="ssnLabel" destination="LWF-ON-iya" id="Rea-r0-kt7"/>
+                        <outlet property="ssnTextField" destination="pt6-1J-HVj" id="rfz-st-hW9"/>
+                        <outlet property="stateLabel" destination="hhG-lL-60E" id="nfK-xi-eXH"/>
+                        <outlet property="stateTextField" destination="NI2-g2-JW2" id="acZ-wO-WYp"/>
+                        <outlet property="streetAddressLabel" destination="SIO-ZT-Wif" id="09n-gx-fe1"/>
+                        <outlet property="streetAddressTextField" destination="qtW-xB-phr" id="Cbr-4E-UF9"/>
+                        <outlet property="vendorButton" destination="AqL-Pg-a2T" id="SiQ-ra-UT3"/>
+                        <outlet property="zipCodeLabel" destination="9TJ-GM-1kT" id="AQL-V6-3rr"/>
+                        <outlet property="zipCodeTextField" destination="du1-Ak-bUP" id="DZx-r6-JRY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

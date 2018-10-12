@@ -14,4 +14,6 @@ enum EntrantType {
     case employee
     /// A manager
     case manager
+    /// A vendor
+    case vendor
 }
