@@ -14,6 +14,12 @@ import Foundation
  rides that can be accessed, and discounts for food or merchandis.
 */
 class Pass: Swipeable {
+    /// The required entrant information
+    class var requiredEntrantInfo: Set<EntrantInfo> {
+        return []
+    }
+    
+    
     /// The number of seconds an entrant has to wait before they can swipe again
     static let secondsBetweenSwipes = 5
     
@@ -39,6 +45,55 @@ class Pass: Swipeable {
      - Parameter entrant: The entrant (person) to assign to this pass.
     */
     init(entrant: Entrant) throws {
+        let requiredInfo = type(of: self).requiredEntrantInfo
+        var missingInformation: [String] = []
+        
+        if requiredInfo.contains(.dateOfBirth) && entrant.dateOfBirth == nil {
+            missingInformation.append("date of birth")
+        }
+        
+        if requiredInfo.contains(.ssn) && entrant.ssn == nil {
+            missingInformation.append("SSN")
+        }
+        
+        if requiredInfo.contains(.projectNumber) && entrant.projectNumber == nil {
+            missingInformation.append("project #")
+        }
+        
+        if requiredInfo.contains(.firstName) && entrant.firstName == nil {
+            missingInformation.append("first name")
+        }
+        
+        if requiredInfo.contains(.lastName) && entrant.lastName == nil {
+            missingInformation.append("last name")
+        }
+        
+        if requiredInfo.contains(.company) && entrant.company == nil {
+            missingInformation.append("company")
+        }
+        
+        if requiredInfo.contains(.streetAddress) && entrant.streetAddress == nil {
+            missingInformation.append("street address")
+        }
+        
+        if requiredInfo.contains(.city) && entrant.city == nil {
+            missingInformation.append("city")
+        }
+        
+        if requiredInfo.contains(.state) && entrant.state == nil {
+            missingInformation.append("state")
+        }
+        
+        if requiredInfo.contains(.zipCode) && entrant.zipCode == nil {
+            missingInformation.append("zip code")
+        }
+        
+        guard missingInformation.isEmpty else {
+            let missing = missingInformation.joined(separator: ", ")
+            let desc = "Entrant is missing information: \(missing)"
+            throw PassError.missingInformation(description: desc)
+        }
+        
         self.entrant = entrant
     }
     

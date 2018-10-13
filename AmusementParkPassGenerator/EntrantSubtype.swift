@@ -8,18 +8,23 @@
 
 /// All entrant subtypes for guests, employees, managers, and vendors
 enum EntrantSubtype {
+    // Guest
     case childGuest
     case classicGuest
     case seniorGuest
     case vipGuest
+    case seasonPassGuest
     
+    // Employee
     case hourlyEmployeeFoodServices
     case hourlyEmployeeRideServices
     case hourlyEmployeeMaintenance
     case contractEmployee
     
+    // Manager
     case manager
     
+    // Vendor
     case vendor
     
     /// Display names for guest types
@@ -27,7 +32,8 @@ enum EntrantSubtype {
         .childGuest: "Child",
         .classicGuest: "Adult",
         .seniorGuest: "Senior",
-        .vipGuest: "VIP"]
+        .vipGuest: "VIP",
+        .seasonPassGuest: "Season Pass"]
     /// Display names for employee types
     static let employeeDisplayNames: [EntrantSubtype: String] = [
         .hourlyEmployeeFoodServices: "Food Services",
@@ -56,6 +62,32 @@ enum EntrantSubtype {
         case .employee: return employeeDisplayNames
         case .manager: return managerDisplayNames
         case .vendor: return vendorDisplayNames
+        }
+    }
+    
+    /**
+     Get the required entrant information needed for an entrant subtype.
+     
+     - Parameter entrantSubtype: The entrant subtype to get the required fields for.
+     - Returns: The required fields for the specific entrant subtype.
+    */
+    static func requiredEntrantInfo(for entrantSubtype: EntrantSubtype) -> Set<EntrantInfo> {
+        switch entrantSubtype {
+        // Guest passes
+        case .childGuest: return FreeChildGuestPass.requiredEntrantInfo
+        case .classicGuest: return GuestPass.requiredEntrantInfo
+        case .seniorGuest: return SeniorGuestPass.requiredEntrantInfo
+        case .vipGuest: return VIPGuestPass.requiredEntrantInfo
+        case .seasonPassGuest: return SeasonGuestPass.requiredEntrantInfo
+        // Employee passes
+        case .hourlyEmployeeFoodServices: return HourlyEmployeeFoodServicesPass.requiredEntrantInfo
+        case .hourlyEmployeeRideServices: return HourlyEmployeeRideServicesPass.requiredEntrantInfo
+        case .hourlyEmployeeMaintenance: return HourlyEmployeeMaintenancePass.requiredEntrantInfo
+        case .contractEmployee: return ContractEmployeePass.requiredEntrantInfo
+        // Management passes
+        case .manager: return ManagerPass.requiredEntrantInfo
+        // Vendor passes
+        case .vendor: return VendorPass.requiredEntrantInfo
         }
     }
 }

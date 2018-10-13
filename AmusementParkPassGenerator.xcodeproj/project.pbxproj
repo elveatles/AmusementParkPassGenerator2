@@ -32,6 +32,11 @@
 		09D7180B2166E69A00AD7231 /* GuestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7180A2166E69A00AD7231 /* GuestType.swift */; };
 		09D7180D2166E6B100AD7231 /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7180C2166E6B100AD7231 /* EmployeeType.swift */; };
 		09D7180F2166EBAA00AD7231 /* SwipeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7180E2166EBAA00AD7231 /* SwipeResult.swift */; };
+		09DC48BD2171558000D22C76 /* EntrantInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC48BC2171558000D22C76 /* EntrantInfo.swift */; };
+		09DC48BF2171586F00D22C76 /* SeasonGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC48BE2171586F00D22C76 /* SeasonGuestPass.swift */; };
+		09DC48C12171613300D22C76 /* SeniorGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC48C02171613300D22C76 /* SeniorGuestPass.swift */; };
+		09DC48C32171624C00D22C76 /* ContractEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC48C22171624C00D22C76 /* ContractEmployeePass.swift */; };
+		09DC48C5217162BC00D22C76 /* VendorPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC48C4217162BC00D22C76 /* VendorPass.swift */; };
 		09DD31522166EF2100383814 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DD31512166EF2100383814 /* Test.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +68,11 @@
 		09D7180A2166E69A00AD7231 /* GuestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestType.swift; sourceTree = "<group>"; };
 		09D7180C2166E6B100AD7231 /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		09D7180E2166EBAA00AD7231 /* SwipeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeResult.swift; sourceTree = "<group>"; };
+		09DC48BC2171558000D22C76 /* EntrantInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInfo.swift; sourceTree = "<group>"; };
+		09DC48BE2171586F00D22C76 /* SeasonGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonGuestPass.swift; sourceTree = "<group>"; };
+		09DC48C02171613300D22C76 /* SeniorGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuestPass.swift; sourceTree = "<group>"; };
+		09DC48C22171624C00D22C76 /* ContractEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEmployeePass.swift; sourceTree = "<group>"; };
+		09DC48C4217162BC00D22C76 /* VendorPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorPass.swift; sourceTree = "<group>"; };
 		09DD31512166EF2100383814 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,20 +113,25 @@
 				0975E69521669137001B7E5A /* Assets.xcassets */,
 				0975E69721669137001B7E5A /* LaunchScreen.storyboard */,
 				0975E69A21669137001B7E5A /* Info.plist */,
-				0975E6A0216693E9001B7E5A /* Pass.swift */,
 				09A8923121682E470051AC30 /* Swipeable.swift */,
-				0948EF942167D67F00B84F57 /* ManagerPass.swift */,
+				0975E6A0216693E9001B7E5A /* Pass.swift */,
+				0948EF882167D42800B84F57 /* GuestPass.swift */,
+				0948EF8C2167D4A500B84F57 /* FreeChildGuestPass.swift */,
+				0948EF8A2167D48400B84F57 /* VIPGuestPass.swift */,
+				09DC48BE2171586F00D22C76 /* SeasonGuestPass.swift */,
+				09DC48C02171613300D22C76 /* SeniorGuestPass.swift */,
 				0948EF922167D65400B84F57 /* HourlyEmployeeRideServicesPass.swift */,
 				0948EF902167D60800B84F57 /* HourlyEmployeeFoodServicesPass.swift */,
 				0948EF962167D6F300B84F57 /* HourlyEmployeeMaintenancePass.swift */,
+				09DC48C22171624C00D22C76 /* ContractEmployeePass.swift */,
 				0948EF8E2167D59C00B84F57 /* EmployeePass.swift */,
-				0948EF8C2167D4A500B84F57 /* FreeChildGuestPass.swift */,
-				0948EF8A2167D48400B84F57 /* VIPGuestPass.swift */,
-				0948EF882167D42800B84F57 /* GuestPass.swift */,
+				0948EF942167D67F00B84F57 /* ManagerPass.swift */,
+				09DC48C4217162BC00D22C76 /* VendorPass.swift */,
 				09D7180E2166EBAA00AD7231 /* SwipeResult.swift */,
 				09D718082166C1CF00AD7231 /* PassError.swift */,
 				09D718062166BD2B00AD7231 /* DiscountType.swift */,
 				0975E6AA2166A6E2001B7E5A /* Entrant.swift */,
+				09DC48BC2171558000D22C76 /* EntrantInfo.swift */,
 				0975E6A221669505001B7E5A /* EntrantType.swift */,
 				09D7180C2166E6B100AD7231 /* EmployeeType.swift */,
 				09171C7721711ADB008447F8 /* EntrantSubtype.swift */,
@@ -201,18 +216,23 @@
 				09D718072166BD2B00AD7231 /* DiscountType.swift in Sources */,
 				0975E69121669135001B7E5A /* ViewController.swift in Sources */,
 				0948EF932167D65400B84F57 /* HourlyEmployeeRideServicesPass.swift in Sources */,
+				09DC48BF2171586F00D22C76 /* SeasonGuestPass.swift in Sources */,
 				0975E6A721669659001B7E5A /* RideAccess.swift in Sources */,
 				0975E6A1216693E9001B7E5A /* Pass.swift in Sources */,
 				09D718092166C1CF00AD7231 /* PassError.swift in Sources */,
+				09DC48C32171624C00D22C76 /* ContractEmployeePass.swift in Sources */,
+				09DC48C5217162BC00D22C76 /* VendorPass.swift in Sources */,
 				0948EF952167D67F00B84F57 /* ManagerPass.swift in Sources */,
 				0948EF892167D42800B84F57 /* GuestPass.swift in Sources */,
 				09D7180D2166E6B100AD7231 /* EmployeeType.swift in Sources */,
 				09DD31522166EF2100383814 /* Test.swift in Sources */,
 				0948EF8D2167D4A600B84F57 /* FreeChildGuestPass.swift in Sources */,
 				0948EF8F2167D59C00B84F57 /* EmployeePass.swift in Sources */,
+				09DC48BD2171558000D22C76 /* EntrantInfo.swift in Sources */,
 				0975E6AB2166A6E2001B7E5A /* Entrant.swift in Sources */,
 				09D7180F2166EBAA00AD7231 /* SwipeResult.swift in Sources */,
 				0948EF972167D6F300B84F57 /* HourlyEmployeeMaintenancePass.swift in Sources */,
+				09DC48C12171613300D22C76 /* SeniorGuestPass.swift in Sources */,
 				0975E6A321669505001B7E5A /* EntrantType.swift in Sources */,
 				0975E68F21669135001B7E5A /* AppDelegate.swift in Sources */,
 				09D7180B2166E69A00AD7231 /* GuestType.swift in Sources */,

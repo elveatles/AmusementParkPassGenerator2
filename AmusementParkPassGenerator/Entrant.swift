@@ -20,6 +20,7 @@ struct Entrant {
     let city: String?
     let state: String?
     let zipCode: Int?
+    let dateOfVisit = Date()
     
     /// Check if it's the entrant's birthday. nil if the entrant did not provide their date of birth
     var isBirthday: Bool? {

@@ -54,6 +54,7 @@ class ViewController: UIViewController {
     var selectedEntrantSubtype: EntrantSubtype? {
         didSet {
             selectButtonInSet(buttonDict: currentEntrantSubtypeButtons, currentSelection: selectedEntrantSubtype)
+            enableFields()
         }
     }
     
@@ -66,20 +67,35 @@ class ViewController: UIViewController {
                 subview.removeFromSuperview()
             }
             
-            for button in currentEntrantSubtypeButtons.values {
-                entrantSubtypeStackView.addArrangedSubview(button)
+            // Add subtype buttons in a specific order since dictionary does not maintain order
+            if let order = entrantSubtypeOrder[selectedEntrantType] {
+                for subtype in order {
+                    if let button = currentEntrantSubtypeButtons[subtype] {
+                        entrantSubtypeStackView.addArrangedSubview(button)
+                    }
+                }
             }
         }
     }
     
+    private let textFieldBorderColorEnabled = UIColor(white: 160.0/255.0, alpha: 1.0).cgColor
+    private let textFieldBorderColorDisabled = UIColor(white: 190.0/255.0, alpha: 1.0).cgColor
     private var entrantTypeButtons = [EntrantType: UIButton]()
     private var entrantSubtypeButtons: [EntrantType: [EntrantSubtype: UIButton]] = [
         .guest: [:], .employee: [:], .manager: [:], .vendor: [:]
+    ]
+    private let entrantSubtypeOrder: [EntrantType: [EntrantSubtype]] = [
+        .guest: [.childGuest, .classicGuest, .seniorGuest, .seasonPassGuest],
+        .employee: [.hourlyEmployeeFoodServices, .hourlyEmployeeRideServices, .hourlyEmployeeMaintenance, .contractEmployee],
+        .manager: [.manager],
+        .vendor: [.vendor]
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        styleTextFields()
         
         // Assign entrant type buttons
         entrantTypeButtons = [
@@ -105,6 +121,8 @@ class ViewController: UIViewController {
             }
             entrantSubtypeButtons[key] = subtypeButtons
         }
+        
+        enableFields()
     }
     
     @IBAction func guestChosen() {
@@ -138,6 +156,83 @@ class ViewController: UIViewController {
     }
     
     @IBAction func populateData() {
+    }
+    
+    /// Style all text fields
+    func styleTextFields() {
+        styleTextField(dateOfBirthTextField)
+        styleTextField(ssnTextField)
+        styleTextField(projectNumberTextField)
+        styleTextField(firstNameTextField)
+        styleTextField(lastNameTextField)
+        styleTextField(companyTextField)
+        styleTextField(streetAddressTextField)
+        styleTextField(cityTextField)
+        styleTextField(stateTextField)
+        styleTextField(zipCodeTextField)
+    }
+    
+    /**
+     Style a text field.
+     
+     - Parameter textField: The text field to style.
+    */
+    private func styleTextField(_ textField: UITextField) {
+        textField.layer.borderWidth = 2
+        textField.layer.cornerRadius = 4
+    }
+    
+    /**
+     Enable/disable fields depending on which entrant subtype is selected.
+    */
+    private func enableFields() {
+        var required = Set<EntrantInfo>()
+        if let subtype = selectedEntrantSubtype {
+            required = EntrantSubtype.requiredEntrantInfo(for: subtype)
+        }
+        
+        let dateOfBirthEnabled = required.contains(.dateOfBirth)
+        let ssnEnabled = required.contains(.ssn)
+        let projectNumberEnabled = required.contains(.projectNumber)
+        let firstNameEnabled = required.contains(.firstName)
+        let lastNameEnabled = required.contains(.lastName)
+        let companyEnabled = required.contains(.company)
+        let streetAddressEnabled = required.contains(.streetAddress)
+        let cityEnabled = required.contains(.city)
+        let stateEnabled = required.contains(.state)
+        let zipCodeEnabled = required.contains(.zipCode)
+        
+        enableField(label: dateOfBirthLabel, field: dateOfBirthTextField, isEnabled: dateOfBirthEnabled)
+        enableField(label: ssnLabel, field: ssnTextField, isEnabled: ssnEnabled)
+        enableField(label: projectNumberLabel, field: projectNumberTextField, isEnabled: projectNumberEnabled)
+        enableField(label: firstNameLabel, field: firstNameTextField, isEnabled: firstNameEnabled)
+        enableField(label: lastNameLabel, field: lastNameTextField, isEnabled: lastNameEnabled)
+        enableField(label: companyLabel, field: companyTextField, isEnabled: companyEnabled)
+        enableField(label: streetAddressLabel, field: streetAddressTextField, isEnabled: streetAddressEnabled)
+        enableField(label: cityLabel, field: cityTextField, isEnabled: cityEnabled)
+        enableField(label: stateLabel, field: stateTextField, isEnabled: stateEnabled)
+        enableField(label: zipCodeLabel, field: zipCodeTextField, isEnabled: zipCodeEnabled)
+    }
+    
+    /**
+     Enable/disable a field.
+     
+     - Parameter label: The label for the field to enable/disable.
+     - Parameter field: The text field to enable/disable.
+     - Parameter isEnabled: Whether the field is enabled.
+    */
+    private func enableField(label: UILabel, field: UITextField, isEnabled: Bool) {
+        label.isEnabled = isEnabled
+        field.isEnabled = isEnabled
+        if isEnabled {
+            field.textColor = .black
+            field.backgroundColor = .white
+            field.layer.borderColor = textFieldBorderColorEnabled
+        } else {
+            field.textColor = .lightGray
+            field.backgroundColor = .clear
+            field.layer.borderColor = textFieldBorderColorDisabled
+        }
     }
     
     /**
