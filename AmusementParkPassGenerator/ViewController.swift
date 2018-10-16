@@ -34,6 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipCodeLabel: UILabel!
     @IBOutlet weak var zipCodeTextField: UITextField!
+    @IBOutlet weak var generatePassButton: UIButton!
     
     /// The selected entrant type.
     /// Updates the appearance of the entrant type buttons.
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
         didSet {
             selectButtonInSet(buttonDict: currentEntrantSubtypeButtons, currentSelection: selectedEntrantSubtype)
             enableFields()
+            generatePassButton.isEnabled = selectedEntrantSubtype != nil
         }
     }
     
@@ -123,6 +125,7 @@ class ViewController: UIViewController {
         }
         
         enableFields()
+        generatePassButton.isEnabled = false
     }
     
     @IBAction func guestChosen() {
@@ -153,9 +156,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func generatePass() {
+        guard let subtype = selectedEntrantSubtype else {
+            print("generatePass: selectedEntrantSubtype is nil. The generate pass button should be disabled in this case.")
+            return
+        }
+        
+        
     }
     
     @IBAction func populateData() {
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     /// Style all text fields
@@ -188,7 +204,7 @@ class ViewController: UIViewController {
     private func enableFields() {
         var required = Set<EntrantInfo>()
         if let subtype = selectedEntrantSubtype {
-            required = EntrantSubtype.requiredEntrantInfo(for: subtype)
+            required = subtype.requiredEntrantInfo
         }
         
         let dateOfBirthEnabled = required.contains(.dateOfBirth)

@@ -71,8 +71,8 @@ enum EntrantSubtype {
      - Parameter entrantSubtype: The entrant subtype to get the required fields for.
      - Returns: The required fields for the specific entrant subtype.
     */
-    static func requiredEntrantInfo(for entrantSubtype: EntrantSubtype) -> Set<EntrantInfo> {
-        switch entrantSubtype {
+    var requiredEntrantInfo: Set<EntrantInfo> {
+        switch self {
         // Guest passes
         case .childGuest: return FreeChildGuestPass.requiredEntrantInfo
         case .classicGuest: return GuestPass.requiredEntrantInfo
