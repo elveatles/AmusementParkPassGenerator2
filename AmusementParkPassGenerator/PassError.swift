@@ -9,7 +9,7 @@
 /// Error relating to park passes
 enum PassError: Error {
     /// An entrant is missing information required to create a type of pass
-    case missingInformation(description: String)
+    case missingInformation(fields: Set<EntrantInfo>)
     /// An entrant is the wrong age for a certain type of pass
     case wrongAge(description: String)
 }

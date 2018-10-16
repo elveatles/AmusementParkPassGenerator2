@@ -161,13 +161,73 @@ class ViewController: UIViewController {
             return
         }
         
+        let required = subtype.requiredEntrantInfo
         
+        let dateOfBirth = required.contains(.dateOfBirth) ? dateOfBirthTextField.text : nil
+        let ssn = required.contains(.ssn) ? ssnTextField.text : nil
+        let projectNumber = required.contains(.projectNumber) ? projectNumberTextField.text : nil
+        let firstName = required.contains(.firstName) ? firstNameTextField.text : nil
+        let lastName = required.contains(.lastName) ? lastNameTextField.text : nil
+        let company = required.contains(.company) ? companyTextField.text : nil
+        let streetAddress = required.contains(.streetAddress) ? streetAddressTextField.text : nil
+        let city = required.contains(.city) ? cityTextField.text : nil
+        let state = required.contains(.state) ? stateTextField.text : nil
+        let zipCode = required.contains(.zipCode) ? zipCodeTextField.text : nil
+        
+        do {
+            let entrant = try Entrant(
+                dateOfBirth: dateOfBirth,
+                ssn: ssn,
+                projectNumber: projectNumber,
+                company: company,
+                firstName: firstName,
+                lastName: lastName,
+                streetAddress: streetAddress,
+                city: city,
+                state: state,
+                zipCode: zipCode)
+            let pass = try Pass.createPass(for: subtype, entrant: entrant)
+            performSegue(withIdentifier: "createPass", sender: pass)
+        } catch EntrantError.exceedsMaxLength(let fields) {
+            let alertFields = alertStringFrom(fields: fields)
+            let message = "Some fields are too long. Please shorten them.\n\n\(alertFields)"
+            showAlert(title: "Fields Too Long", message: message)
+        } catch EntrantError.invalidFormat(let fields) {
+            let alertFields = alertStringFrom(fields: fields)
+            let message = "Some fields were not formatted correctly.\n\n\(alertFields)"
+            showAlert(title: "Fields Formatted Incorrectly", message: message)
+        } catch PassError.missingInformation(let fields) {
+            let alertFields = alertStringFrom(fields: fields)
+            let message = "Some required fields are missing.\n\n\(alertFields)"
+            showAlert(title: "Fields Missing", message: message)
+        } catch PassError.wrongAge(let description) {
+            showAlert(title: "Age Requirement", message: description)
+        } catch {
+            showAlert(title: "Unexpected Error", message: error.localizedDescription)
+        }
     }
     
     @IBAction func populateData() {
     }
     
-    func showAlert(title: String, message: String) {
+    /**
+     Get a string from a set of fields to show in an alert.
+     
+     - Parameter fields: The fields to get a string from.
+     - Returns: The fields as a string.
+    */
+    private func alertStringFrom(fields: Set<EntrantInfo>) -> String {
+        let displayNames = fields.map { $0.displayName }
+        return displayNames.joined(separator: "\n")
+    }
+    
+    /**
+     Show an alert view controller.
+     
+     - Parameter title: The title of the alert.
+     - Parameter message: The alert message.
+    */
+    private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
@@ -175,7 +235,7 @@ class ViewController: UIViewController {
     }
     
     /// Style all text fields
-    func styleTextFields() {
+    private func styleTextFields() {
         styleTextField(dateOfBirthTextField)
         styleTextField(ssnTextField)
         styleTextField(projectNumberTextField)

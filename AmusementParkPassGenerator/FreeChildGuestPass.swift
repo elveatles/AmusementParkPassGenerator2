@@ -29,7 +29,7 @@ class FreeChildGuestPass: GuestPass {
         try super.init(entrant: entrant)
         
         guard let dateOfBirth = entrant.dateOfBirth else {
-            throw PassError.missingInformation(description: "Missing date of birth.")
+            throw PassError.missingInformation(fields: [.dateOfBirth])
         }
         
         let now = Date()

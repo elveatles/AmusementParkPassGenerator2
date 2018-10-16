@@ -37,8 +37,8 @@ struct Test {
     /// Test GuestPass access and discounts
     func testGuestPass() {
         printTestPass(description: "Classic Guest")
-        let entrant = Entrant()
         do {
+            let entrant = try Entrant()
             let guestPass = try GuestPass(entrant: entrant)
             testPass(guestPass)
         }
@@ -51,8 +51,8 @@ struct Test {
     func testVIPGuestPass() {
         printTestPass(description: "VIP Guest Pass")
         
-        let entrant = Entrant()
         do {
+            let entrant = try Entrant()
             let pass = try VIPGuestPass(entrant: entrant)
             testPass(pass)
         } catch {
@@ -64,9 +64,9 @@ struct Test {
     func testFreeChildGuestPass() {
         printTestPass(description: "Free Child Guest Pass")
         
-        let anonymousEntrant = Entrant()
         // This should throw an error because entrant has no date of birth
         do {
+            let anonymousEntrant = try Entrant()
             let _ = try FreeChildGuestPass(entrant: anonymousEntrant)
         } catch PassError.missingInformation {
             print("Expected PassError.missingInformation error creating FreeChildGuestPass.")
@@ -77,8 +77,9 @@ struct Test {
         // This should throw an error because the entrant is too old
         let today = Calendar.current.startOfDay(for: Date())
         let dateOfBirthTooOld = Calendar.current.date(byAdding: .year, value: -5, to: today)!
-        let entrantTooOld = Entrant(dateOfBirth: dateOfBirthTooOld)
+        let dateOfBirthTooOldString = Entrant.dateFormatter.string(from: dateOfBirthTooOld)
         do {
+            let entrantTooOld = try Entrant(dateOfBirth: dateOfBirthTooOldString)
             let _ = try FreeChildGuestPass(entrant: entrantTooOld)
         } catch PassError.wrongAge(let description) {
             print("Expected PassError.wrongAge error: \(description)")
@@ -88,8 +89,9 @@ struct Test {
         
         var dateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: today)!
         dateOfBirth = Calendar.current.date(byAdding: .day, value: 1, to: dateOfBirth)!
-        let entrant = Entrant(dateOfBirth: dateOfBirth)
+        let dateOfBirthString = Entrant.dateFormatter.string(from: dateOfBirth)
         do {
+            let entrant = try Entrant(dateOfBirth: dateOfBirthString)
             let childGuestPass = try FreeChildGuestPass(entrant: entrant)
             testPass(childGuestPass)
         } catch {
@@ -101,8 +103,8 @@ struct Test {
     func testHourlyEmployeeFoodServicesPass() {
         printTestPass(description: "Hourly Employee - Food Services Pass")
         
-        let anonymousEntrant = Entrant()
         do {
+            let anonymousEntrant = try Entrant()
             let _ = try HourlyEmployeeFoodServicesPass(entrant: anonymousEntrant)
         } catch PassError.missingInformation(let description) {
             print("Expected PassError.missingInformation error thrown when creating HourlyEmployeeFoodServicesPass: \(description)")
@@ -110,8 +112,8 @@ struct Test {
             print("Unexpected error trying to create HourlyEmployeeFoodServicesPass with anonymous employee. \(error)")
         }
         
-        let entrant = Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: 90000)
         do {
+            let entrant = try Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: "90000")
             let pass = try HourlyEmployeeFoodServicesPass(entrant: entrant)
             testPass(pass)
         } catch {
@@ -123,8 +125,8 @@ struct Test {
     func testHourlyEmployeeRideServicesPass() {
         printTestPass(description: "Hourly Employee - Ride Services Pass")
         
-        let partialEntrant = Entrant(firstName: "First", lastName: "Last")
         do {
+            let partialEntrant = try Entrant(firstName: "First", lastName: "Last")
             let _ = try HourlyEmployeeRideServicesPass(entrant: partialEntrant)
         } catch PassError.missingInformation(let description) {
             print("Expected PassError.missingInformation error when creating HourlyEmployeeRideServicesPass with partialEntrant: \(description)")
@@ -132,8 +134,8 @@ struct Test {
             print("Unexpected error creating HourlyEmployeeRideServicesPass with partialEntrant: \(error)")
         }
         
-        let entrant = Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: 90000)
         do {
+            let entrant = try Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: "90000")
             let pass = try HourlyEmployeeRideServicesPass(entrant: entrant)
             testPass(pass)
         } catch {
@@ -145,8 +147,8 @@ struct Test {
     func testHourlyEmployeeMaintenancePass() {
         printTestPass(description: "Hourly Employee - Maintenance Pass")
         
-        let partialEntrant = Entrant(firstName: "First", lastName: "Last")
         do {
+            let partialEntrant = try Entrant(firstName: "First", lastName: "Last")
             let _ = try HourlyEmployeeMaintenancePass(entrant: partialEntrant)
         } catch PassError.missingInformation(let description) {
             print("Expected PassError.missingInformation error when creating HourlyEmployeeMaintenancePass with partialEntrant: \(description)")
@@ -154,8 +156,8 @@ struct Test {
             print("Unexpected error creating HourlyEmployeeMaintenancePass with partialEntrant: \(error)")
         }
         
-        let entrant = Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: 90000)
         do {
+            let entrant = try Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: "90000")
             let pass = try HourlyEmployeeMaintenancePass(entrant: entrant)
             testPass(pass)
         } catch {
@@ -167,8 +169,8 @@ struct Test {
     func testManagerPass() {
         printTestPass(description: "Manager Pass")
         
-        let partialEntrant = Entrant(firstName: "First", lastName: "Last")
         do {
+            let partialEntrant = try Entrant(firstName: "First", lastName: "Last")
             let _ = try ManagerPass(entrant: partialEntrant)
         } catch PassError.missingInformation(let description) {
             print("Expected PassError.missingInformation error when creating ManagerPass with partialEntrant: \(description)")
@@ -176,8 +178,8 @@ struct Test {
             print("Unexpected error creating ManagerPass with partialEntrant: \(error)")
         }
         
-        let entrant = Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: 90000)
         do {
+            let entrant = try Entrant(firstName: "First", lastName: "Last", streetAddress: "Street Address", city: "City", state: "CA", zipCode: "90000")
             let pass = try ManagerPass(entrant: entrant)
             testPass(pass)
         } catch {
@@ -190,28 +192,42 @@ struct Test {
         printTestPass(description: "Test Entrant Birthday")
         
         // Test isBirthday without date of birth
-        let anonymousEntrant = Entrant()
-        if anonymousEntrant.isBirthday == nil {
-            print("Expectedly could not check entrant's birthday without a date of birth.")
-        } else {
-            print("Unexpectedly got result from isBirthday even though entrant's date of birth was not provided.")
+        do {
+            let anonymousEntrant = try Entrant()
+            if anonymousEntrant.isBirthday == nil {
+                print("Expectedly could not check entrant's birthday without a date of birth.")
+            } else {
+                print("Unexpectedly got result from isBirthday even though entrant's date of birth was not provided.")
+            }
+        } catch {
+            print("Unexpected error creating anonymousEntrant in testIsBirthday: \(error)")
         }
         
         // Test isBirthday when it is the entrant's birthday
-        let birthdayDateOfBirth = Calendar.current.date(byAdding: .year, value: -1, to: Date())
-        let birthdayEntrant = Entrant(dateOfBirth: birthdayDateOfBirth)
-        if let isBirthday = birthdayEntrant.isBirthday {
-            if isBirthday {
-                print("Expectedly isBirthday is true for birthdayEntrant")
+        guard let birthdayDateOfBirth = Calendar.current.date(byAdding: .year, value: -1, to: Date()) else {
+            print("Could not create birthdayDateOfBirth in testIsBirthday")
+            return
+        }
+        
+        let birthdayDateOfBirthString = Entrant.dateFormatter.string(from: birthdayDateOfBirth)
+        do {
+            let birthdayEntrant = try Entrant(dateOfBirth: birthdayDateOfBirthString)
+            if let isBirthday = birthdayEntrant.isBirthday {
+                if isBirthday {
+                    print("Expectedly isBirthday is true for birthdayEntrant")
+                } else {
+                    print("Unexpectedly isBirthday is false for birthdayEntrant")
+                }
             } else {
-                print("Unexpectedly isBirthday is false for birthdayEntrant")
+                print("Unexpectedly guestPass.isBirthday is nil for birthdayEntrant")
             }
-        } else {
-            print("Unexpectedly guestPass.isBirthday is nil for birthdayEntrant")
+        } catch {
+            print("Unexpected error creating birthdayEntrant in testIsBirthday: \(error)")
         }
         
         // Test swipe message for birthday entrant
         do {
+            let birthdayEntrant = try Entrant(dateOfBirth: birthdayDateOfBirthString)
             let guestPass = try GuestPass(entrant: birthdayEntrant)
             var swipeResult = guestPass.swipe(parkArea: .amusement)
             print("birthday swipeResult for amusement area: \(swipeResult)")
@@ -222,21 +238,30 @@ struct Test {
         }
         
         // Test isBirthday for non-birthday entrant
-        var nonBirthdayDateOfBirth = Calendar.current.date(byAdding: .year, value: -1, to: Date())
-        nonBirthdayDateOfBirth = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        let nonBirthdayEntrant = Entrant(dateOfBirth: nonBirthdayDateOfBirth)
-        if let isBirthday = nonBirthdayEntrant.isBirthday {
-            if isBirthday {
-                print("Unexpectedly isBirthday is true for nonBirthdayEntrant")
+        guard let nonBirthdayDateOfBirth = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else {
+            print("Could not create nonBirthdayDateOfBirth in testIsBirthday")
+            return
+        }
+        let nonBirthdayDateOfBirthString = Entrant.dateFormatter.string(from: nonBirthdayDateOfBirth)
+        
+        do {
+            let nonBirthdayEntrant = try Entrant(dateOfBirth: nonBirthdayDateOfBirthString)
+            if let isBirthday = nonBirthdayEntrant.isBirthday {
+                if isBirthday {
+                    print("Unexpectedly isBirthday is true for nonBirthdayEntrant")
+                } else {
+                    print("Expectedly isBirthday is false for nonBirthdayEntrant")
+                }
             } else {
-                print("Expectedly isBirthday is false for nonBirthdayEntrant")
+                print("Unexpectedly guestPass.isBirthday is nil for nonBirthdayEntrant")
             }
-        } else {
-            print("Unexpectedly guestPass.isBirthday is nil for nonBirthdayEntrant")
+        } catch {
+            print("Unexpected error creating nonBirthdayEntrant in testIsBirthday: \(error)")
         }
         
         // Test swipe message for non-birthday entrant
         do {
+            let nonBirthdayEntrant = try Entrant(dateOfBirth: nonBirthdayDateOfBirthString)
             let guestPass = try GuestPass(entrant: nonBirthdayEntrant)
             var swipeResult = guestPass.swipe(parkArea: .amusement)
             print("non-birthday swipeResult for amusement area: \(swipeResult)")
@@ -251,8 +276,8 @@ struct Test {
     func testSwipeTooSoon() {
         printTestPass(description: "Swipe Too Soon")
         
-        let entrant = Entrant()
         do {
+            let entrant = try Entrant()
             let pass = try GuestPass(entrant: entrant)
             let _ = pass.swipe(rideAccess: .all)
             var swipeResult = pass.swipe(rideAccess: .all)

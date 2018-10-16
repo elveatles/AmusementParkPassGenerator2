@@ -18,6 +18,7 @@
 		0948EF972167D6F300B84F57 /* HourlyEmployeeMaintenancePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948EF962167D6F300B84F57 /* HourlyEmployeeMaintenancePass.swift */; };
 		09540A8C21754AA000E7C264 /* FormattedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A8B21754AA000E7C264 /* FormattedTextField.swift */; };
 		09540A8E217569F700E7C264 /* MaxLengthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A8D217569F700E7C264 /* MaxLengthTextField.swift */; };
+		09540A902176553D00E7C264 /* EntrantError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A8F2176553D00E7C264 /* EntrantError.swift */; };
 		0975E68F21669135001B7E5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975E68E21669135001B7E5A /* AppDelegate.swift */; };
 		0975E69121669135001B7E5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975E69021669135001B7E5A /* ViewController.swift */; };
 		0975E69421669135001B7E5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0975E69221669135001B7E5A /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		0948EF962167D6F300B84F57 /* HourlyEmployeeMaintenancePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeMaintenancePass.swift; sourceTree = "<group>"; };
 		09540A8B21754AA000E7C264 /* FormattedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedTextField.swift; sourceTree = "<group>"; };
 		09540A8D217569F700E7C264 /* MaxLengthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxLengthTextField.swift; sourceTree = "<group>"; };
+		09540A8F2176553D00E7C264 /* EntrantError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantError.swift; sourceTree = "<group>"; };
 		0975E68B21669135001B7E5A /* AmusementParkPassGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementParkPassGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0975E68E21669135001B7E5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0975E69021669135001B7E5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				09D718082166C1CF00AD7231 /* PassError.swift */,
 				09D718062166BD2B00AD7231 /* DiscountType.swift */,
 				0975E6AA2166A6E2001B7E5A /* Entrant.swift */,
+				09540A8F2176553D00E7C264 /* EntrantError.swift */,
 				09DC48BC2171558000D22C76 /* EntrantInfo.swift */,
 				0975E6A221669505001B7E5A /* EntrantType.swift */,
 				09D7180C2166E6B100AD7231 /* EmployeeType.swift */,
@@ -249,6 +252,7 @@
 				09171C7821711ADB008447F8 /* EntrantSubtype.swift in Sources */,
 				09540A8E217569F700E7C264 /* MaxLengthTextField.swift in Sources */,
 				0948EF8B2167D48400B84F57 /* VIPGuestPass.swift in Sources */,
+				09540A902176553D00E7C264 /* EntrantError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

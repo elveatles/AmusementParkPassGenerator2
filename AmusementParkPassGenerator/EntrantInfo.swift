@@ -18,4 +18,20 @@ enum EntrantInfo {
     case city
     case state
     case zipCode
+    
+    /// The user-frieldy display name
+    var displayName: String {
+        switch self{
+        case .dateOfBirth: return "Date of Birth"
+        case .ssn: return "SSN"
+        case .projectNumber: return "Project #"
+        case .firstName: return "First Name"
+        case .lastName: return "Last Name"
+        case .company: return "Company"
+        case .streetAddress: return "Street Address"
+        case .city: return "City"
+        case .state: return "State"
+        case .zipCode: return "Zip Code"
+        }
+    }
 }

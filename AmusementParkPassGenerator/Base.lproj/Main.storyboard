@@ -516,6 +516,7 @@
                         <outlet property="vendorButton" destination="AqL-Pg-a2T" id="SiQ-ra-UT3"/>
                         <outlet property="zipCodeLabel" destination="9TJ-GM-1kT" id="AQL-V6-3rr"/>
                         <outlet property="zipCodeTextField" destination="du1-Ak-bUP" id="DZx-r6-JRY"/>
+                        <segue destination="h3E-cD-atd" kind="show" identifier="createPass" id="bn0-7V-3Jr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

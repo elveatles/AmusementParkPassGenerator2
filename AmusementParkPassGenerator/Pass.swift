@@ -14,6 +14,30 @@ import Foundation
  rides that can be accessed, and discounts for food or merchandis.
 */
 class Pass: Swipeable {
+    /**
+     Create a pass based on the entrant subtype.
+     
+     - Parameter entrantSubtype: The entrant subtype to create a pass for.
+     - Parameter entrant: The entrant who the pass is for.
+     - Returns: The pass that was created. The type will be different depending on what the entrant subtype is.
+     - Throws: Throws an error depending on what type of pass is created. It will be one of the PassError cases.
+    */
+    public static func createPass(for entrantSubtype: EntrantSubtype, entrant: Entrant) throws -> Pass {
+        switch entrantSubtype {
+        case .childGuest: return try FreeChildGuestPass(entrant: entrant)
+        case .classicGuest: return try GuestPass(entrant: entrant)
+        case .seniorGuest: return try SeniorGuestPass(entrant: entrant)
+        case .vipGuest: return try VIPGuestPass(entrant: entrant)
+        case .seasonPassGuest: return try SeasonGuestPass(entrant: entrant)
+        case .hourlyEmployeeFoodServices: return try HourlyEmployeeFoodServicesPass(entrant: entrant)
+        case .hourlyEmployeeRideServices: return try HourlyEmployeeRideServicesPass(entrant: entrant)
+        case .hourlyEmployeeMaintenance: return try HourlyEmployeeMaintenancePass(entrant: entrant)
+        case .contractEmployee: return try ContractEmployeePass(entrant: entrant)
+        case .manager: return try ManagerPass(entrant: entrant)
+        case .vendor: return try VendorPass(entrant: entrant)
+        }
+    }
+    
     /// The required entrant information
     class var requiredEntrantInfo: Set<EntrantInfo> {
         return []
@@ -46,52 +70,50 @@ class Pass: Swipeable {
     */
     init(entrant: Entrant) throws {
         let requiredInfo = type(of: self).requiredEntrantInfo
-        var missingInformation: [String] = []
+        var missingInformation = Set<EntrantInfo>()
         
         if requiredInfo.contains(.dateOfBirth) && entrant.dateOfBirth == nil {
-            missingInformation.append("date of birth")
+            missingInformation.insert(.dateOfBirth)
         }
         
         if requiredInfo.contains(.ssn) && entrant.ssn == nil {
-            missingInformation.append("SSN")
+            missingInformation.insert(.ssn)
         }
         
         if requiredInfo.contains(.projectNumber) && entrant.projectNumber == nil {
-            missingInformation.append("project #")
+            missingInformation.insert(.projectNumber)
         }
         
         if requiredInfo.contains(.firstName) && entrant.firstName == nil {
-            missingInformation.append("first name")
+            missingInformation.insert(.firstName)
         }
         
         if requiredInfo.contains(.lastName) && entrant.lastName == nil {
-            missingInformation.append("last name")
+            missingInformation.insert(.lastName)
         }
         
         if requiredInfo.contains(.company) && entrant.company == nil {
-            missingInformation.append("company")
+            missingInformation.insert(.company)
         }
         
         if requiredInfo.contains(.streetAddress) && entrant.streetAddress == nil {
-            missingInformation.append("street address")
+            missingInformation.insert(.streetAddress)
         }
         
         if requiredInfo.contains(.city) && entrant.city == nil {
-            missingInformation.append("city")
+            missingInformation.insert(.city)
         }
         
         if requiredInfo.contains(.state) && entrant.state == nil {
-            missingInformation.append("state")
+            missingInformation.insert(.state)
         }
         
         if requiredInfo.contains(.zipCode) && entrant.zipCode == nil {
-            missingInformation.append("zip code")
+            missingInformation.insert(.zipCode)
         }
         
         guard missingInformation.isEmpty else {
-            let missing = missingInformation.joined(separator: ", ")
-            let desc = "Entrant is missing information: \(missing)"
-            throw PassError.missingInformation(description: desc)
+            throw PassError.missingInformation(fields: missingInformation)
         }
         
         self.entrant = entrant
