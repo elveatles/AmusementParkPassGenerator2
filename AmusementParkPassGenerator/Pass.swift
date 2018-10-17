@@ -90,9 +90,10 @@ class Pass: Swipeable {
      Swipe the card to access a ride.
      
      - Parameter rideAccess: The type of ride access the swiper wants.
+     - Parameter checkSwipeTime: If true, the swipe will check if the user swiped too soon since their last swipe.
      - Returns: Whether the swipe allows access and a message to show the user. This implementation is always unsuccessful because it was meant to be overridden in a subclass.
     */
-    func swipe(rideAccess: RideAccess) -> SwipeResult {
+    func swipe(rideAccess: RideAccess, checkSwipeTime: Bool = true) -> SwipeResult {
         return SwipeResult(success: false, message: "Swipe function must be overridden in an inherited class.")
     }
     

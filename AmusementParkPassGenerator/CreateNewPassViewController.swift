@@ -44,10 +44,12 @@ class CreateNewPassViewController: UIViewController {
         
         entrantSubtypeLabel.text = type(of: thePass).typeDisplayName
         var details = ""
-        if thePass.swipe(rideAccess: RideAccess.skipLines).success {
+        if thePass.swipe(rideAccess: RideAccess.skipLines, checkSwipeTime: false).success {
             details += "• Skip Ride Lines\n"
-        } else if thePass.swipe(rideAccess: RideAccess.all).success {
+        } else if thePass.swipe(rideAccess: RideAccess.all, checkSwipeTime: false).success {
             details += "• Unlimited Rides\n"
+        } else {
+            details += "• No ride access\n"
         }
         
         let foodDiscount = thePass.swipe(discountType: .food)
@@ -56,7 +58,11 @@ class CreateNewPassViewController: UIViewController {
         let merchandiseDiscountDisplay = Int(merchandiseDiscount * 100)
         details += "• \(foodDiscountDisplay)% Food Discount\n"
         details += "• \(merchandiseDiscountDisplay)% Merchandise Discount"
-        passDetailsLabel.text = details
+        let detailsAttributed = NSMutableAttributedString(string: details)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 15
+        detailsAttributed.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, detailsAttributed.length))
+        passDetailsLabel.attributedText = detailsAttributed
     }
     
     @IBAction func testAreaAccess() {

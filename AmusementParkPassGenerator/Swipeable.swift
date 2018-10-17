@@ -9,6 +9,6 @@
 /// Protocol for a swipeable object
 protocol Swipeable {
     func swipe(parkArea: ParkArea) -> SwipeResult
-    func swipe(rideAccess: RideAccess) -> SwipeResult
+    func swipe(rideAccess: RideAccess, checkSwipeTime: Bool) -> SwipeResult
     func swipe(discountType: DiscountType) -> Float
 }
