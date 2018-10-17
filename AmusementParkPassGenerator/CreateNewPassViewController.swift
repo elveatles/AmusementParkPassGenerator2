@@ -15,6 +15,8 @@ class CreateNewPassViewController: UIViewController {
     @IBOutlet weak var testResultsLabel: UILabel!
     @IBOutlet weak var testResultsBackground: UIView!
     
+    public let successSoundName = "AccessGranted"
+    public let failSoundName = "AccessDenied"
     public let testResultsFont = UIFont.boldSystemFont(ofSize: 18)
     public let successColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     public let failColor = #colorLiteral(red: 0.9254902005, green: 0.3349699263, blue: 0.2380417806, alpha: 1)
@@ -153,11 +155,9 @@ class CreateNewPassViewController: UIViewController {
     
     private func showSwipeTest(success: Bool, message: String) {
         testResultsLabel.text = message
-        if success {
-            testResultsBackground.backgroundColor = successColor
-        } else {
-            testResultsBackground.backgroundColor = failColor
-        }
+        testResultsBackground.backgroundColor = success ? successColor : failColor
+        let soundName = success ? successSoundName : failSoundName
+        SoundPlayer.playSound(name: soundName, ext: "wav")
     }
     
     /*
