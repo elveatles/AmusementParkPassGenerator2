@@ -8,6 +8,10 @@
 
 /// Park pass for Hourly Employee - Maintenance
 class HourlyEmployeeMaintenancePass: EmployeePass {
+    override class var typeDisplayName: String {
+        return "Hourly Employee - Maintenance Pass"
+    }
+    
     override func swipe(parkArea: ParkArea) -> SwipeResult {
         switch parkArea {
         case .amusement, .kitchen, .rideControl, .maintenance: return createSwipeResult(accessible: true)

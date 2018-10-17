@@ -26,6 +26,7 @@ struct Entrant {
     static let zipCodeLengthFirst = 5
     static let zipCodeLengthSecond = 4
     
+    let subtype: EntrantSubtype
     let dateOfBirth: Date?
     let ssn: (Int, Int, Int)?
     let projectNumber: Int?
@@ -117,6 +118,15 @@ struct Entrant {
         return (firstInt, Int(secondTrimmed))
     }
     
+    /// The full name of the entrant using first name and last name
+    var fullName: String? {
+        guard let first = firstName, let last = lastName else {
+            return nil
+        }
+        
+        return "\(first) \(last)"
+    }
+    
     /// Check if it's the entrant's birthday. nil if the entrant did not provide their date of birth
     var isBirthday: Bool? {
         guard let dob = dateOfBirth else {
@@ -138,6 +148,7 @@ struct Entrant {
                 if any of the non-nil fields are too long.
     */
     init(
+        subtype: EntrantSubtype,
         dateOfBirth: String? = nil,
         ssn: String? = nil,
         projectNumber: String? = nil,
@@ -149,6 +160,57 @@ struct Entrant {
         state: String? = nil,
         zipCode: String? = nil) throws {
         
+        self.subtype = subtype
+        
+        // Check for missing fields
+        let requiredInfo = subtype.requiredEntrantInfo
+        var missingInformation = Set<EntrantInfo>()
+        
+        if requiredInfo.contains(.dateOfBirth) && String.isNilOrNothing(dateOfBirth) {
+            missingInformation.insert(.dateOfBirth)
+        }
+        
+        if requiredInfo.contains(.ssn) && String.isNilOrNothing(ssn) {
+            missingInformation.insert(.ssn)
+        }
+        
+        if requiredInfo.contains(.projectNumber) && String.isNilOrNothing(projectNumber) {
+            missingInformation.insert(.projectNumber)
+        }
+        
+        if requiredInfo.contains(.firstName) && String.isNilOrNothing(firstName) {
+            missingInformation.insert(.firstName)
+        }
+        
+        if requiredInfo.contains(.lastName) && String.isNilOrNothing(lastName) {
+            missingInformation.insert(.lastName)
+        }
+        
+        if requiredInfo.contains(.company) && String.isNilOrNothing(company) {
+            missingInformation.insert(.company)
+        }
+        
+        if requiredInfo.contains(.streetAddress) && String.isNilOrNothing(streetAddress) {
+            missingInformation.insert(.streetAddress)
+        }
+        
+        if requiredInfo.contains(.city) && String.isNilOrNothing(city) {
+            missingInformation.insert(.city)
+        }
+        
+        if requiredInfo.contains(.state) && String.isNilOrNothing(state) {
+            missingInformation.insert(.state)
+        }
+        
+        if requiredInfo.contains(.zipCode) && String.isNilOrNothing(zipCode) {
+            missingInformation.insert(.zipCode)
+        }
+        
+        guard missingInformation.isEmpty else {
+            throw EntrantError.missingInformation(fields: missingInformation)
+        }
+        
+        // Check for fields being too long
         var tooLongFields = Set<EntrantInfo>()
         if let comp = company, comp.count > Entrant.companyMaxLength {
             tooLongFields.insert(.company)
@@ -174,6 +236,7 @@ struct Entrant {
             throw EntrantError.exceedsMaxLength(fields: tooLongFields)
         }
         
+        // Check for fields that are formatted incorrectly
         var badFormatFields = Set<EntrantInfo>()
         
         // Date of birth
@@ -244,6 +307,23 @@ struct Entrant {
         
         if !badFormatFields.isEmpty {
             throw EntrantError.invalidFormat(fields: badFormatFields)
+        }
+        
+        // Check age
+        if let dob = self.dateOfBirth {
+            let now = Date()
+            let age = Calendar.current.dateComponents([.year], from: dob, to: now)
+            
+            if subtype == .childGuest {
+                guard age.year ?? 100 < FreeChildGuestPass.ageCutoff else {
+                    throw EntrantError.wrongAge(description: "Entrant must be younger than \(FreeChildGuestPass.ageCutoff). age: \(age)")
+                }
+            } else if subtype == .seniorGuest {
+                // Nothing in the the Business Rules Matrix about specific age
+                guard age.year ?? 0 >= SeniorGuestPass.ageCutoff else {
+                    throw EntrantError.wrongAge(description: "Entrant must be \(SeniorGuestPass.ageCutoff) or older. age: \(age)")
+                }
+            }
         }
     }
 }

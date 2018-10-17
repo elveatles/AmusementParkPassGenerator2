@@ -19,6 +19,8 @@
 		09540A8C21754AA000E7C264 /* FormattedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A8B21754AA000E7C264 /* FormattedTextField.swift */; };
 		09540A8E217569F700E7C264 /* MaxLengthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A8D217569F700E7C264 /* MaxLengthTextField.swift */; };
 		09540A902176553D00E7C264 /* EntrantError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A8F2176553D00E7C264 /* EntrantError.swift */; };
+		09540A922176A97100E7C264 /* CreateNewPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A912176A97100E7C264 /* CreateNewPassViewController.swift */; };
+		09540A942176D9E500E7C264 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09540A932176D9E500E7C264 /* StringExtension.swift */; };
 		0975E68F21669135001B7E5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975E68E21669135001B7E5A /* AppDelegate.swift */; };
 		0975E69121669135001B7E5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975E69021669135001B7E5A /* ViewController.swift */; };
 		0975E69421669135001B7E5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0975E69221669135001B7E5A /* Main.storyboard */; };
@@ -31,7 +33,6 @@
 		0975E6AB2166A6E2001B7E5A /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975E6AA2166A6E2001B7E5A /* Entrant.swift */; };
 		09A8923221682E470051AC30 /* Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A8923121682E470051AC30 /* Swipeable.swift */; };
 		09D718072166BD2B00AD7231 /* DiscountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D718062166BD2B00AD7231 /* DiscountType.swift */; };
-		09D718092166C1CF00AD7231 /* PassError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D718082166C1CF00AD7231 /* PassError.swift */; };
 		09D7180B2166E69A00AD7231 /* GuestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7180A2166E69A00AD7231 /* GuestType.swift */; };
 		09D7180D2166E6B100AD7231 /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7180C2166E6B100AD7231 /* EmployeeType.swift */; };
 		09D7180F2166EBAA00AD7231 /* SwipeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7180E2166EBAA00AD7231 /* SwipeResult.swift */; };
@@ -56,6 +57,8 @@
 		09540A8B21754AA000E7C264 /* FormattedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedTextField.swift; sourceTree = "<group>"; };
 		09540A8D217569F700E7C264 /* MaxLengthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxLengthTextField.swift; sourceTree = "<group>"; };
 		09540A8F2176553D00E7C264 /* EntrantError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantError.swift; sourceTree = "<group>"; };
+		09540A912176A97100E7C264 /* CreateNewPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPassViewController.swift; sourceTree = "<group>"; };
+		09540A932176D9E500E7C264 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		0975E68B21669135001B7E5A /* AmusementParkPassGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementParkPassGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0975E68E21669135001B7E5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0975E69021669135001B7E5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +73,6 @@
 		0975E6AA2166A6E2001B7E5A /* Entrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
 		09A8923121682E470051AC30 /* Swipeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipeable.swift; sourceTree = "<group>"; };
 		09D718062166BD2B00AD7231 /* DiscountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountType.swift; sourceTree = "<group>"; };
-		09D718082166C1CF00AD7231 /* PassError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassError.swift; sourceTree = "<group>"; };
 		09D7180A2166E69A00AD7231 /* GuestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestType.swift; sourceTree = "<group>"; };
 		09D7180C2166E6B100AD7231 /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		09D7180E2166EBAA00AD7231 /* SwipeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeResult.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				0975E68E21669135001B7E5A /* AppDelegate.swift */,
 				0975E69021669135001B7E5A /* ViewController.swift */,
+				09540A912176A97100E7C264 /* CreateNewPassViewController.swift */,
 				09540A8B21754AA000E7C264 /* FormattedTextField.swift */,
 				09540A8D217569F700E7C264 /* MaxLengthTextField.swift */,
 				09DD31512166EF2100383814 /* Test.swift */,
@@ -121,6 +124,7 @@
 				0975E69521669137001B7E5A /* Assets.xcassets */,
 				0975E69721669137001B7E5A /* LaunchScreen.storyboard */,
 				0975E69A21669137001B7E5A /* Info.plist */,
+				09540A932176D9E500E7C264 /* StringExtension.swift */,
 				09A8923121682E470051AC30 /* Swipeable.swift */,
 				0975E6A0216693E9001B7E5A /* Pass.swift */,
 				0948EF882167D42800B84F57 /* GuestPass.swift */,
@@ -136,7 +140,6 @@
 				0948EF942167D67F00B84F57 /* ManagerPass.swift */,
 				09DC48C4217162BC00D22C76 /* VendorPass.swift */,
 				09D7180E2166EBAA00AD7231 /* SwipeResult.swift */,
-				09D718082166C1CF00AD7231 /* PassError.swift */,
 				09D718062166BD2B00AD7231 /* DiscountType.swift */,
 				0975E6AA2166A6E2001B7E5A /* Entrant.swift */,
 				09540A8F2176553D00E7C264 /* EntrantError.swift */,
@@ -226,10 +229,10 @@
 				0975E69121669135001B7E5A /* ViewController.swift in Sources */,
 				0948EF932167D65400B84F57 /* HourlyEmployeeRideServicesPass.swift in Sources */,
 				09DC48BF2171586F00D22C76 /* SeasonGuestPass.swift in Sources */,
+				09540A942176D9E500E7C264 /* StringExtension.swift in Sources */,
 				0975E6A721669659001B7E5A /* RideAccess.swift in Sources */,
 				0975E6A1216693E9001B7E5A /* Pass.swift in Sources */,
 				09540A8C21754AA000E7C264 /* FormattedTextField.swift in Sources */,
-				09D718092166C1CF00AD7231 /* PassError.swift in Sources */,
 				09DC48C32171624C00D22C76 /* ContractEmployeePass.swift in Sources */,
 				09DC48C5217162BC00D22C76 /* VendorPass.swift in Sources */,
 				0948EF952167D67F00B84F57 /* ManagerPass.swift in Sources */,
@@ -238,6 +241,7 @@
 				09DD31522166EF2100383814 /* Test.swift in Sources */,
 				0948EF8D2167D4A600B84F57 /* FreeChildGuestPass.swift in Sources */,
 				0948EF8F2167D59C00B84F57 /* EmployeePass.swift in Sources */,
+				09540A922176A97100E7C264 /* CreateNewPassViewController.swift in Sources */,
 				09DC48BD2171558000D22C76 /* EntrantInfo.swift in Sources */,
 				0975E6AB2166A6E2001B7E5A /* Entrant.swift in Sources */,
 				09D7180F2166EBAA00AD7231 /* SwipeResult.swift in Sources */,

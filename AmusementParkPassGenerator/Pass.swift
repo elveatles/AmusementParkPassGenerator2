@@ -22,19 +22,19 @@ class Pass: Swipeable {
      - Returns: The pass that was created. The type will be different depending on what the entrant subtype is.
      - Throws: Throws an error depending on what type of pass is created. It will be one of the PassError cases.
     */
-    public static func createPass(for entrantSubtype: EntrantSubtype, entrant: Entrant) throws -> Pass {
+    public static func createPass(for entrantSubtype: EntrantSubtype, entrant: Entrant) -> Pass {
         switch entrantSubtype {
-        case .childGuest: return try FreeChildGuestPass(entrant: entrant)
-        case .classicGuest: return try GuestPass(entrant: entrant)
-        case .seniorGuest: return try SeniorGuestPass(entrant: entrant)
-        case .vipGuest: return try VIPGuestPass(entrant: entrant)
-        case .seasonPassGuest: return try SeasonGuestPass(entrant: entrant)
-        case .hourlyEmployeeFoodServices: return try HourlyEmployeeFoodServicesPass(entrant: entrant)
-        case .hourlyEmployeeRideServices: return try HourlyEmployeeRideServicesPass(entrant: entrant)
-        case .hourlyEmployeeMaintenance: return try HourlyEmployeeMaintenancePass(entrant: entrant)
-        case .contractEmployee: return try ContractEmployeePass(entrant: entrant)
-        case .manager: return try ManagerPass(entrant: entrant)
-        case .vendor: return try VendorPass(entrant: entrant)
+        case .childGuest: return FreeChildGuestPass(entrant: entrant)
+        case .classicGuest: return GuestPass(entrant: entrant)
+        case .seniorGuest: return SeniorGuestPass(entrant: entrant)
+        case .vipGuest: return VIPGuestPass(entrant: entrant)
+        case .seasonPassGuest: return SeasonGuestPass(entrant: entrant)
+        case .hourlyEmployeeFoodServices: return HourlyEmployeeFoodServicesPass(entrant: entrant)
+        case .hourlyEmployeeRideServices: return HourlyEmployeeRideServicesPass(entrant: entrant)
+        case .hourlyEmployeeMaintenance: return HourlyEmployeeMaintenancePass(entrant: entrant)
+        case .contractEmployee: return ContractEmployeePass(entrant: entrant)
+        case .manager: return ManagerPass(entrant: entrant)
+        case .vendor: return VendorPass(entrant: entrant)
         }
     }
     
@@ -43,6 +43,10 @@ class Pass: Swipeable {
         return []
     }
     
+    /// The display name for this pass type
+    class var typeDisplayName: String {
+        return "Pass"
+    }
     
     /// The number of seconds an entrant has to wait before they can swipe again
     static let secondsBetweenSwipes = 5
@@ -68,54 +72,7 @@ class Pass: Swipeable {
      
      - Parameter entrant: The entrant (person) to assign to this pass.
     */
-    init(entrant: Entrant) throws {
-        let requiredInfo = type(of: self).requiredEntrantInfo
-        var missingInformation = Set<EntrantInfo>()
-        
-        if requiredInfo.contains(.dateOfBirth) && entrant.dateOfBirth == nil {
-            missingInformation.insert(.dateOfBirth)
-        }
-        
-        if requiredInfo.contains(.ssn) && entrant.ssn == nil {
-            missingInformation.insert(.ssn)
-        }
-        
-        if requiredInfo.contains(.projectNumber) && entrant.projectNumber == nil {
-            missingInformation.insert(.projectNumber)
-        }
-        
-        if requiredInfo.contains(.firstName) && entrant.firstName == nil {
-            missingInformation.insert(.firstName)
-        }
-        
-        if requiredInfo.contains(.lastName) && entrant.lastName == nil {
-            missingInformation.insert(.lastName)
-        }
-        
-        if requiredInfo.contains(.company) && entrant.company == nil {
-            missingInformation.insert(.company)
-        }
-        
-        if requiredInfo.contains(.streetAddress) && entrant.streetAddress == nil {
-            missingInformation.insert(.streetAddress)
-        }
-        
-        if requiredInfo.contains(.city) && entrant.city == nil {
-            missingInformation.insert(.city)
-        }
-        
-        if requiredInfo.contains(.state) && entrant.state == nil {
-            missingInformation.insert(.state)
-        }
-        
-        if requiredInfo.contains(.zipCode) && entrant.zipCode == nil {
-            missingInformation.insert(.zipCode)
-        }
-        
-        guard missingInformation.isEmpty else {
-            throw PassError.missingInformation(fields: missingInformation)
-        }
-        
+    init(entrant: Entrant) {
         self.entrant = entrant
     }
     

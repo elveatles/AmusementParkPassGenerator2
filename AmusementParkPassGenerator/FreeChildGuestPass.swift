@@ -13,29 +13,11 @@ class FreeChildGuestPass: GuestPass {
     override class var requiredEntrantInfo: Set<EntrantInfo> {
         return [.dateOfBirth]
     }
+    
+    override class var typeDisplayName: String {
+        return "Child Guest Pass"
+    }
+    
     /// The age that the child must be younger than for this pass
     static let ageCutoff = 5
-    
-    /**
-     Create the free child guest pass.
-     
-     - Parameter entrant: The entrant information.
-     - Throws: `PassError.missingInformation`
-                if the entrant date of birth is not provided.
-                `PassError.wrongAge`
-                if the entrant is too old to apply for this type of pass.
-    */
-    override init(entrant: Entrant) throws {
-        try super.init(entrant: entrant)
-        
-        guard let dateOfBirth = entrant.dateOfBirth else {
-            throw PassError.missingInformation(fields: [.dateOfBirth])
-        }
-        
-        let now = Date()
-        let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: now)
-        guard age.year! < FreeChildGuestPass.ageCutoff else {
-            throw PassError.wrongAge(description: "Entrant must be younger than \(FreeChildGuestPass.ageCutoff). age: \(age)")
-        }
-    }
 }

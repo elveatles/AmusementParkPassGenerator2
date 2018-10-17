@@ -8,6 +8,10 @@
 
 /// VIP Guest Pass
 class VIPGuestPass: GuestPass {
+    override class var typeDisplayName: String {
+        return "VIP Guest Pass"
+    }
+    
     override func swipe(rideAccess: RideAccess) -> SwipeResult {
         switch rideAccess {
         case .all, .skipLines: return createSwipeResult(accessible: true)

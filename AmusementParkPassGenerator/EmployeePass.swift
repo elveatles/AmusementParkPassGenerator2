@@ -8,6 +8,10 @@
 
 /// An employee park pass. Should be subclassed for specific employee types.
 class EmployeePass: Pass {
+    override class var typeDisplayName: String {
+        return "Employee Pass"
+    }
+    
     override class var requiredEntrantInfo: Set<EntrantInfo> {
         return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
     }

@@ -523,10 +523,10 @@
             </objects>
             <point key="canvasLocation" x="137.5" y="87.890625"/>
         </scene>
-        <!--View Controller-->
+        <!--Create New Pass View Controller-->
         <scene sceneID="cem-y5-csW">
             <objects>
-                <viewController id="h3E-cD-atd" sceneMemberID="viewController">
+                <viewController id="h3E-cD-atd" customClass="CreateNewPassViewController" customModule="AmusementParkPassGenerator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hc9-S3-pbk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -645,6 +645,9 @@
                                         <state key="normal" title="Area Access">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="testAreaAccess" destination="h3E-cD-atd" eventType="touchUpInside" id="6db-hX-yok"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvR-nf-Rdi">
                                         <rect key="frame" x="245.5" y="0.0" width="213" height="60"/>
@@ -656,6 +659,9 @@
                                         <state key="normal" title="Ride Access">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="testRideAccess" destination="h3E-cD-atd" eventType="touchUpInside" id="MSY-UN-Ota"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5k-Kq-ESY">
                                         <rect key="frame" x="490.5" y="0.0" width="213.5" height="60"/>
@@ -667,14 +673,20 @@
                                         <state key="normal" title="Discount Access">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="testDiscountAccess" destination="h3E-cD-atd" eventType="touchUpInside" id="M90-Vv-fHY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tus-bU-hpQ">
-                                <rect key="frame" x="32" y="711.5" width="704" height="159.5"/>
+                                <rect key="frame" x="32" y="711.5" width="704" height="160"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNs-68-ctG">
-                                        <rect key="frame" x="8" y="8" width="688" height="143.5"/>
+                                        <rect key="frame" x="8" y="8" width="688" height="144"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="144" id="c54-Jx-uNu"/>
+                                        </constraints>
                                         <string key="text">Test Results
 Test Results
 Test Results
@@ -704,6 +716,9 @@ Test Results</string>
                                 <state key="normal" title="Create New Pass">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="createNewPass" destination="h3E-cD-atd" eventType="touchUpInside" id="FaA-7t-JRl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.86274509803921573" green="0.83529411764705885" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -733,6 +748,12 @@ Test Results</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y6j-Up-jOl"/>
                     </view>
+                    <connections>
+                        <outlet property="entrantSubtypeLabel" destination="M1L-KK-Oe1" id="tq2-Of-nJ1"/>
+                        <outlet property="nameLabel" destination="cbz-rY-L5d" id="7tY-IQ-4en"/>
+                        <outlet property="passDetailsLabel" destination="G48-F9-42A" id="geL-cq-0xq"/>
+                        <outlet property="testResultsLabel" destination="PNs-68-ctG" id="wFd-wE-0WU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDi-OZ-vRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

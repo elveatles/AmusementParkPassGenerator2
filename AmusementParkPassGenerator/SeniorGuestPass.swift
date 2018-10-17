@@ -7,6 +7,12 @@
 //
 
 class SeniorGuestPass: GuestPass {
+    static let ageCutoff = 65
+    
+    override class var typeDisplayName: String {
+        return "Senior Guest Pass"
+    }
+    
     override class var requiredEntrantInfo: Set<EntrantInfo> {
         return [.firstName, .lastName, .dateOfBirth]
     }

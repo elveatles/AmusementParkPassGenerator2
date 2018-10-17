@@ -8,6 +8,10 @@
 
 /// Base class for guest passes
 class GuestPass: Pass {
+    override class var typeDisplayName: String {
+        return "Classic Guest Pass"
+    }
+    
     override func swipe(parkArea: ParkArea) -> SwipeResult {
         switch parkArea {
         case .amusement: return createSwipeResult(accessible: true)

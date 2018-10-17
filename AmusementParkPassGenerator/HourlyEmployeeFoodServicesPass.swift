@@ -8,6 +8,10 @@
 
 /// Park pass for Hourly Employee - Food Services
 class HourlyEmployeeFoodServicesPass: EmployeePass {
+    override class var typeDisplayName: String {
+        return "Hourly Employee - Food Services Pass"
+    }
+    
     override func swipe(parkArea: ParkArea) -> SwipeResult {
         switch parkArea {
         case .amusement, .kitchen: return createSwipeResult(accessible: true)

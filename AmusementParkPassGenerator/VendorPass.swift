@@ -8,6 +8,10 @@
 
 /// Pass for a vendor entrant
 class VendorPass: Pass {
+    override class var typeDisplayName: String {
+        return "Vendor Pass"
+    }
+    
     override class var requiredEntrantInfo: Set<EntrantInfo> {
         // date of visit is automatically filled in
         return [.firstName, .lastName, .company, .dateOfBirth]

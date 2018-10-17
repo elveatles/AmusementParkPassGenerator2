@@ -7,6 +7,10 @@
 //
 
 class SeasonGuestPass: GuestPass {
+    override class var typeDisplayName: String {
+        return "Season Guest Pass"
+    }
+    
     override class var requiredEntrantInfo: Set<EntrantInfo> {
         return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
     }

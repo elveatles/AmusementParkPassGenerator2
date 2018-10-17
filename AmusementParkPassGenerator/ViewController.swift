@@ -128,6 +128,12 @@ class ViewController: UIViewController {
         generatePassButton.isEnabled = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? CreateNewPassViewController, let pass = sender as? Pass {
+            destination.pass = pass
+        }
+    }
+    
     @IBAction func guestChosen() {
         selectedEntrantType = .guest
     }
@@ -161,33 +167,25 @@ class ViewController: UIViewController {
             return
         }
         
-        let required = subtype.requiredEntrantInfo
-        
-        let dateOfBirth = required.contains(.dateOfBirth) ? dateOfBirthTextField.text : nil
-        let ssn = required.contains(.ssn) ? ssnTextField.text : nil
-        let projectNumber = required.contains(.projectNumber) ? projectNumberTextField.text : nil
-        let firstName = required.contains(.firstName) ? firstNameTextField.text : nil
-        let lastName = required.contains(.lastName) ? lastNameTextField.text : nil
-        let company = required.contains(.company) ? companyTextField.text : nil
-        let streetAddress = required.contains(.streetAddress) ? streetAddressTextField.text : nil
-        let city = required.contains(.city) ? cityTextField.text : nil
-        let state = required.contains(.state) ? stateTextField.text : nil
-        let zipCode = required.contains(.zipCode) ? zipCodeTextField.text : nil
-        
         do {
             let entrant = try Entrant(
-                dateOfBirth: dateOfBirth,
-                ssn: ssn,
-                projectNumber: projectNumber,
-                company: company,
-                firstName: firstName,
-                lastName: lastName,
-                streetAddress: streetAddress,
-                city: city,
-                state: state,
-                zipCode: zipCode)
-            let pass = try Pass.createPass(for: subtype, entrant: entrant)
+                subtype: subtype,
+                dateOfBirth: dateOfBirthTextField.text,
+                ssn: ssnTextField.text,
+                projectNumber: projectNumberTextField.text,
+                company: companyTextField.text,
+                firstName: firstNameTextField.text,
+                lastName: lastNameTextField.text,
+                streetAddress: streetAddressTextField.text,
+                city: cityTextField.text,
+                state: stateTextField.text,
+                zipCode: zipCodeTextField.text)
+            let pass = Pass.createPass(for: subtype, entrant: entrant)
             performSegue(withIdentifier: "createPass", sender: pass)
+        } catch EntrantError.missingInformation(let fields) {
+            let alertFields = alertStringFrom(fields: fields)
+            let message = "Some required fields are missing.\n\n\(alertFields)"
+            showAlert(title: "Fields Missing", message: message)
         } catch EntrantError.exceedsMaxLength(let fields) {
             let alertFields = alertStringFrom(fields: fields)
             let message = "Some fields are too long. Please shorten them.\n\n\(alertFields)"
@@ -196,11 +194,7 @@ class ViewController: UIViewController {
             let alertFields = alertStringFrom(fields: fields)
             let message = "Some fields were not formatted correctly.\n\n\(alertFields)"
             showAlert(title: "Fields Formatted Incorrectly", message: message)
-        } catch PassError.missingInformation(let fields) {
-            let alertFields = alertStringFrom(fields: fields)
-            let message = "Some required fields are missing.\n\n\(alertFields)"
-            showAlert(title: "Fields Missing", message: message)
-        } catch PassError.wrongAge(let description) {
+        } catch EntrantError.wrongAge(let description) {
             showAlert(title: "Age Requirement", message: description)
         } catch {
             showAlert(title: "Unexpected Error", message: error.localizedDescription)

@@ -8,7 +8,12 @@
 
 /// Error related to Entrants
 enum EntrantError: Error {
-    /// A field is not in a valid format
-    case invalidFormat(fields: Set<EntrantInfo>)
+    /// Some required fields are missing
+    case missingInformation(fields: Set<EntrantInfo>)
+    /// Some fields are too long
     case exceedsMaxLength(fields: Set<EntrantInfo>)
+    /// Some fields are not in a valid format
+    case invalidFormat(fields: Set<EntrantInfo>)
+    /// Entrant is too old or too young
+    case wrongAge(description: String)
 }
