@@ -632,90 +632,113 @@
                                 <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="W3H-ng-JuI">
-                                <rect key="frame" x="32" y="619.5" width="704" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="W3H-ng-JuI">
+                                <rect key="frame" x="32" y="619.5" width="704" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eA-Ns-scT">
-                                        <rect key="frame" x="0.0" y="0.0" width="213.5" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="161" height="50"/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="eYH-db-Maa"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Area Access">
+                                        <state key="normal" title="Office">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="testAreaAccess" destination="h3E-cD-atd" eventType="touchUpInside" id="6db-hX-yok"/>
+                                            <action selector="testOffice" destination="h3E-cD-atd" eventType="touchUpInside" id="Wkg-fh-4rn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvR-nf-Rdi">
-                                        <rect key="frame" x="245.5" y="0.0" width="213" height="60"/>
+                                        <rect key="frame" x="181" y="0.0" width="161" height="50"/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="IFa-A8-VpT"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Ride Access">
+                                        <state key="normal" title="Kitchen">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="testRideAccess" destination="h3E-cD-atd" eventType="touchUpInside" id="MSY-UN-Ota"/>
+                                            <action selector="testKitchen" destination="h3E-cD-atd" eventType="touchUpInside" id="KZ7-C6-dRb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5k-Kq-ESY">
-                                        <rect key="frame" x="490.5" y="0.0" width="213.5" height="60"/>
+                                        <rect key="frame" x="362" y="0.0" width="161" height="50"/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="map-b5-XWV"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Discount Access">
+                                        <state key="normal" title="Ride Control">
                                             <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="testDiscountAccess" destination="h3E-cD-atd" eventType="touchUpInside" id="M90-Vv-fHY"/>
+                                            <action selector="testRideControl" destination="h3E-cD-atd" eventType="touchUpInside" id="FTy-pM-Cmo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coB-Ml-Kdl">
+                                        <rect key="frame" x="543" y="0.0" width="161" height="50"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Amusement">
+                                            <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testAmusement" destination="h3E-cD-atd" eventType="touchUpInside" id="IM3-tR-0gR"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tus-bU-hpQ">
-                                <rect key="frame" x="32" y="711.5" width="704" height="160"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNs-68-ctG">
-                                        <rect key="frame" x="8" y="8" width="688" height="144"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="144" id="c54-Jx-uNu"/>
-                                        </constraints>
-                                        <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">Test Results
-Test Results
-Test Results
-Test Results
-Test Results
-Test Results</string>
-                                                <attributes>
-                                                    <color key="NSColor" red="0.48627450980392156" green="0.45882352941176469" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" metaFont="system" size="20"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.79607843137254897" green="0.77647058823529413" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="PNs-68-ctG" secondAttribute="bottom" constant="8" id="2k1-6e-1T1"/>
-                                    <constraint firstItem="PNs-68-ctG" firstAttribute="leading" secondItem="Tus-bU-hpQ" secondAttribute="leading" constant="8" id="Fje-4Q-xwv"/>
-                                    <constraint firstAttribute="trailing" secondItem="PNs-68-ctG" secondAttribute="trailing" constant="8" id="vWV-mJ-VSO"/>
-                                    <constraint firstItem="PNs-68-ctG" firstAttribute="top" secondItem="Tus-bU-hpQ" secondAttribute="top" constant="8" id="xfo-di-xPP"/>
+                                    <constraint firstAttribute="height" constant="50" id="qei-Ge-05u"/>
                                 </constraints>
-                            </view>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MwG-b3-uAa">
+                                <rect key="frame" x="32" y="689.5" width="704" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M14-Mg-rhA">
+                                        <rect key="frame" x="0.0" y="0.0" width="161" height="50"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Rides">
+                                            <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testRides" destination="h3E-cD-atd" eventType="touchUpInside" id="M4b-8u-8hF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umq-Es-qc1">
+                                        <rect key="frame" x="181" y="0.0" width="161" height="50"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Food Discount">
+                                            <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testFoodDiscount" destination="h3E-cD-atd" eventType="touchUpInside" id="Kvs-yS-M3H"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eW-H2-e8w">
+                                        <rect key="frame" x="362" y="0.0" width="161" height="50"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Merch Discount">
+                                            <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testMerchDiscount" destination="h3E-cD-atd" eventType="touchUpInside" id="R7o-n2-XhD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzN-oX-x5d">
+                                        <rect key="frame" x="543" y="0.0" width="161" height="50"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Maintenance">
+                                            <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testMaintenance" destination="h3E-cD-atd" eventType="touchUpInside" id="j3B-Wm-BWG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BHJ-3s-1Up"/>
+                                </constraints>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqe-rS-Rub">
                                 <rect key="frame" x="230.5" y="918" width="307" height="80"/>
-                                <color key="backgroundColor" red="0.79607843137254897" green="0.76470588235294112" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="RXR-C0-xkX"/>
                                 </constraints>
@@ -727,6 +750,27 @@ Test Results</string>
                                     <action selector="createNewPass" destination="h3E-cD-atd" eventType="touchUpInside" id="FaA-7t-JRl"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tus-bU-hpQ">
+                                <rect key="frame" x="32" y="763" width="704" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Results" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNs-68-ctG">
+                                        <rect key="frame" x="32" y="8" width="640" height="114"/>
+                                        <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.79607843137254897" green="0.77647058823529413" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="PNs-68-ctG" firstAttribute="centerX" secondItem="Tus-bU-hpQ" secondAttribute="centerX" id="2Gh-Kl-Qpr"/>
+                                    <constraint firstAttribute="bottom" secondItem="PNs-68-ctG" secondAttribute="bottom" constant="8" id="2k1-6e-1T1"/>
+                                    <constraint firstAttribute="height" constant="130" id="3nh-jq-IDR"/>
+                                    <constraint firstItem="PNs-68-ctG" firstAttribute="leading" secondItem="Tus-bU-hpQ" secondAttribute="leading" constant="32" id="Fje-4Q-xwv"/>
+                                    <constraint firstAttribute="trailing" secondItem="PNs-68-ctG" secondAttribute="trailing" constant="32" id="vWV-mJ-VSO"/>
+                                    <constraint firstItem="PNs-68-ctG" firstAttribute="top" secondItem="Tus-bU-hpQ" secondAttribute="top" constant="8" id="xfo-di-xPP"/>
+                                    <constraint firstItem="PNs-68-ctG" firstAttribute="centerY" secondItem="Tus-bU-hpQ" secondAttribute="centerY" id="yuZ-GI-jPM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.86274509803921573" green="0.83529411764705885" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -738,7 +782,10 @@ Test Results</string>
                             <constraint firstItem="Xjf-5b-xZG" firstAttribute="leading" secondItem="y6j-Up-jOl" secondAttribute="leading" id="Hk9-3L-5GM"/>
                             <constraint firstItem="Xjf-5b-xZG" firstAttribute="top" secondItem="K0z-Fg-Azb" secondAttribute="bottom" constant="44" id="JLf-vD-YNf"/>
                             <constraint firstItem="y6j-Up-jOl" firstAttribute="trailing" secondItem="Tus-bU-hpQ" secondAttribute="trailing" constant="32" id="LyB-7b-Nh6"/>
+                            <constraint firstItem="MwG-b3-uAa" firstAttribute="leading" secondItem="y6j-Up-jOl" secondAttribute="leading" constant="32" id="N6z-54-UNc"/>
                             <constraint firstItem="Tus-bU-hpQ" firstAttribute="leading" secondItem="y6j-Up-jOl" secondAttribute="leading" constant="32" id="Oqu-bx-PJi"/>
+                            <constraint firstItem="y6j-Up-jOl" firstAttribute="trailing" secondItem="MwG-b3-uAa" secondAttribute="trailing" constant="32" id="Rhs-k6-TGG"/>
+                            <constraint firstItem="MwG-b3-uAa" firstAttribute="top" secondItem="W3H-ng-JuI" secondAttribute="bottom" constant="20" id="SfV-GF-L0y"/>
                             <constraint firstItem="SrZ-sA-7BY" firstAttribute="leading" secondItem="y6j-Up-jOl" secondAttribute="leading" id="Tgi-gY-ouH"/>
                             <constraint firstItem="YOr-jC-oZu" firstAttribute="centerX" secondItem="hc9-S3-pbk" secondAttribute="centerX" id="cK4-36-kTS"/>
                             <constraint firstItem="fqe-rS-Rub" firstAttribute="width" secondItem="hc9-S3-pbk" secondAttribute="width" multiplier="0.4" id="fCN-bu-Fy8"/>
@@ -747,7 +794,7 @@ Test Results</string>
                             <constraint firstItem="Xjf-5b-xZG" firstAttribute="trailing" secondItem="y6j-Up-jOl" secondAttribute="trailing" id="hyz-6G-6gR"/>
                             <constraint firstItem="K0z-Fg-Azb" firstAttribute="top" secondItem="SrZ-sA-7BY" secondAttribute="bottom" constant="32" id="jal-5l-SMR"/>
                             <constraint firstItem="03f-ji-7fj" firstAttribute="centerX" secondItem="hc9-S3-pbk" secondAttribute="centerX" id="k6C-lP-cJp"/>
-                            <constraint firstItem="Tus-bU-hpQ" firstAttribute="top" secondItem="W3H-ng-JuI" secondAttribute="bottom" constant="32" id="kal-Vi-Y0y"/>
+                            <constraint firstItem="Tus-bU-hpQ" firstAttribute="top" secondItem="MwG-b3-uAa" secondAttribute="bottom" constant="23.5" id="m2k-M7-Qrq"/>
                             <constraint firstItem="SrZ-sA-7BY" firstAttribute="trailing" secondItem="y6j-Up-jOl" secondAttribute="trailing" id="rN3-CK-NF0"/>
                             <constraint firstItem="K0z-Fg-Azb" firstAttribute="leading" secondItem="y6j-Up-jOl" secondAttribute="leading" constant="32" id="vC1-OR-eMR"/>
                             <constraint firstItem="y6j-Up-jOl" firstAttribute="trailing" secondItem="K0z-Fg-Azb" secondAttribute="trailing" constant="32" id="x84-hb-yxe"/>
@@ -759,6 +806,7 @@ Test Results</string>
                         <outlet property="entrantSubtypeLabel" destination="M1L-KK-Oe1" id="tq2-Of-nJ1"/>
                         <outlet property="nameLabel" destination="cbz-rY-L5d" id="7tY-IQ-4en"/>
                         <outlet property="passDetailsLabel" destination="G48-F9-42A" id="geL-cq-0xq"/>
+                        <outlet property="testResultsBackground" destination="Tus-bU-hpQ" id="azr-na-OoI"/>
                         <outlet property="testResultsLabel" destination="PNs-68-ctG" id="wFd-wE-0WU"/>
                     </connections>
                 </viewController>

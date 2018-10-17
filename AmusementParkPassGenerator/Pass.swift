@@ -140,7 +140,7 @@ class Pass: Swipeable {
      - Returns: The swipe result.
     */
     func createSwipeResult(accessible: Bool, checkSwipeTime: Bool = false, message: String? = nil) -> SwipeResult {
-        if checkSwipeTime {
+        if checkSwipeTime && accessible {
             if isSwipeTooSoon {
                 lastSwipeTime = Date()
                 return SwipeResult(success: false, message: "You swiped too soon since your last swipe. You'll have to wait some time.")
