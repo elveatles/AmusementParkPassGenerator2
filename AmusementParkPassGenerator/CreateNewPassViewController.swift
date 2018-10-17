@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The View Controller for showing and testing a newly created pass
 class CreateNewPassViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var entrantSubtypeLabel: UILabel!
@@ -17,10 +18,10 @@ class CreateNewPassViewController: UIViewController {
     
     public let successSoundName = "AccessGranted"
     public let failSoundName = "AccessDenied"
-    public let testResultsFont = UIFont.boldSystemFont(ofSize: 18)
     public let successColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     public let failColor = #colorLiteral(red: 0.9254902005, green: 0.3349699263, blue: 0.2380417806, alpha: 1)
     
+    /// The current pass to show and test with
     public var pass: Pass?
     
     override func viewDidLoad() {
@@ -37,6 +38,7 @@ class CreateNewPassViewController: UIViewController {
         updateInformation()
     }
     
+    /// Update information on the pass including fullName, pass type, ride access, and discounts
     func updateInformation() {
         guard let thePass = pass else {
             print("updateInformation failed because pass is nil.")
@@ -121,6 +123,11 @@ class CreateNewPassViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    /**
+     Test swipe in an area of the park.
+     
+     - Parameter parkArea: The area of the park the swipe happens in.
+    */
     func runTest(parkArea: ParkArea) {
         guard let thePass = pass else {
             showNoPass()
@@ -131,6 +138,11 @@ class CreateNewPassViewController: UIViewController {
         showSwipeResult(result)
     }
     
+    /**
+     Test swipe for a discount.
+     
+     - Parameter discountType: The type of discount the swipe is for.
+    */
     func runTest(discountType: DiscountType) {
         guard let thePass = pass else {
             showNoPass()
@@ -144,15 +156,27 @@ class CreateNewPassViewController: UIViewController {
         showSwipeTest(success: success, message: message)
     }
     
+    /// If for some reason, pass is nil, a custom message will be shown in the test area.
     private func showNoPass() {
         testResultsLabel.text = "No pass was found!"
         testResultsBackground.backgroundColor = failColor
     }
     
+    /**
+     Show the results of a swipe test.
+     
+     - Parameter swipeResult: The result object of a swipe.
+    */
     private func showSwipeResult(_ swipeResult: SwipeResult) {
         showSwipeTest(success: swipeResult.success, message: swipeResult.message)
     }
     
+    /**
+     Show the results of a swipe test.
+     
+     - Parameter success: Whether the swipe was successful or not.
+     - Parameter message: A message to display.
+    */
     private func showSwipeTest(success: Bool, message: String) {
         testResultsLabel.text = message
         testResultsBackground.backgroundColor = success ? successColor : failColor

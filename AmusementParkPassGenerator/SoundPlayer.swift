@@ -10,6 +10,7 @@ import AVFoundation
 
 /// Useful for playing sounds
 class SoundPlayer {
+    /// A cache of audio players.
     private static var players = [String: AVAudioPlayer]()
     
     /**
@@ -19,16 +20,19 @@ class SoundPlayer {
      - Parameter ext: The file extension.
     */
     static func playSound(name: String, ext: String) {
+        // If a matching player is found in the cache, use that to play the sound
         if let player = players[name + ext] {
             player.play()
             return
         }
         
+        // Get the url
         guard let url = Bundle.main.url(forResource: name, withExtension: ext) else {
             print("Could not get url for name: \(name), ext: \(ext)")
             return
         }
         
+        // Create the player and play the sound
         do {
             let player = try AVAudioPlayer(contentsOf: url)
             players[name + ext] = player
