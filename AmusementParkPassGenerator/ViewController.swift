@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         .guest: [:], .employee: [:], .manager: [:], .vendor: [:]
     ]
     private let entrantSubtypeOrder: [EntrantType: [EntrantSubtype]] = [
-        .guest: [.childGuest, .classicGuest, .seniorGuest, .seasonPassGuest],
+        .guest: [.childGuest, .classicGuest, .seniorGuest, .vipGuest, .seasonPassGuest],
         .employee: [.hourlyEmployeeFoodServices, .hourlyEmployeeRideServices, .hourlyEmployeeMaintenance, .contractEmployee],
         .manager: [.manager],
         .vendor: [.vendor]
@@ -196,6 +196,10 @@ class ViewController: UIViewController {
             showAlert(title: "Fields Formatted Incorrectly", message: message)
         } catch EntrantError.wrongAge(let description) {
             showAlert(title: "Age Requirement", message: description)
+        } catch EntrantError.invalidProjectNumber(let value) {
+            showAlert(title: "Invlaid Project #", message: "The project number is not valid: \(value)")
+        } catch EntrantError.invalidCompany(let value) {
+            showAlert(title: "Invalid Company", message: "The company name is not valid: \(value)")
         } catch {
             showAlert(title: "Unexpected Error", message: error.localizedDescription)
         }

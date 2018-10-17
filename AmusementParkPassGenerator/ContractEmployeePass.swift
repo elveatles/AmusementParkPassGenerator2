@@ -17,10 +17,43 @@ class ContractEmployeePass: EmployeePass {
     }
     
     override func swipe(parkArea: ParkArea) -> SwipeResult {
-        switch parkArea {
-        case .amusement, .kitchen: return createSwipeResult(accessible: true)
-        default: return createSwipeResult(accessible: false)
+        guard let projectNumber = entrant.projectNumber else {
+            print("ContractEmployeePass.swipe(parkArea:): entrant does not have a project number")
+            return createSwipeResult(accessible: false)
         }
+        
+        switch projectNumber {
+        case 1001:
+            switch parkArea {
+            case .amusement, .rideControl: return createSwipeResult(accessible: true)
+            default: return createSwipeResult(accessible: false)
+            }
+        case 1002:
+            switch parkArea {
+            case .amusement, .rideControl, .maintenance: return createSwipeResult(accessible: true)
+            default: return createSwipeResult(accessible: false)
+            }
+        case 1003:
+            switch parkArea {
+            case .amusement, .rideControl, .kitchen, .maintenance, .office: return createSwipeResult(accessible: true)
+            }
+        case 2001:
+            switch parkArea {
+            case .office: return createSwipeResult(accessible: true)
+            default: return createSwipeResult(accessible: false)
+            }
+        case 2002:
+            switch parkArea {
+            case .kitchen, .maintenance: return createSwipeResult(accessible: true)
+            default: return createSwipeResult(accessible: false)
+            }
+        default:
+            return createSwipeResult(accessible: false, message: "Project # not recognized: \(projectNumber)")
+        }
+    }
+    
+    override func swipe(rideAccess: RideAccess, checkSwipeTime: Bool = true) -> SwipeResult {
+        return createSwipeResult(accessible: false, checkSwipeTime: checkSwipeTime)
     }
     
     override func swipe(discountType: DiscountType) -> Float {

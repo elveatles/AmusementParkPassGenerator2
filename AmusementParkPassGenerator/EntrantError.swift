@@ -16,4 +16,8 @@ enum EntrantError: Error {
     case invalidFormat(fields: Set<EntrantInfo>)
     /// Entrant is too old or too young
     case wrongAge(description: String)
+    /// An invalid project number is used
+    case invalidProjectNumber(value: Int)
+    /// An invalid company is used
+    case invalidCompany(value: String)
 }

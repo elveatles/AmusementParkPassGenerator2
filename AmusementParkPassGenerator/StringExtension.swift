@@ -21,6 +21,20 @@ extension String {
         return str.isNothing
     }
     
+    /**
+     Get a string's trimmed self or nil.
+     
+     - Parameter string: The value to get back trimmed.
+     - Returns: The trimmed string or nil.
+    */
+    static func nilOrTrimmed(_ string: String?) -> String? {
+        guard let str = string else {
+            return nil
+        }
+        
+        return str.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     /// Check if the string is empty or has no content (just whitespace)
     var isNothing: Bool {
         return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty

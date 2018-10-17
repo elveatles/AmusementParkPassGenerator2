@@ -136,9 +136,10 @@ class Pass: Swipeable {
      
      - Parameter accessible: true if swipe happened in an accessible area.
      - Parameter checkSwipeTime: If true, the last swipe time will be checked to make sure the entrant hasn't swiped again too soon. Also updates the last swipe time.
+     - Parameter message: The result message. If nil, a default message will be used.
      - Returns: The swipe result.
     */
-    func createSwipeResult(accessible: Bool, checkSwipeTime: Bool = false) -> SwipeResult {
+    func createSwipeResult(accessible: Bool, checkSwipeTime: Bool = false, message: String? = nil) -> SwipeResult {
         if checkSwipeTime {
             if isSwipeTooSoon {
                 lastSwipeTime = Date()
@@ -148,7 +149,7 @@ class Pass: Swipeable {
             lastSwipeTime = Date()
         }
         
-        let message = getSwipeMessage(success: accessible)
-        return SwipeResult(success: accessible, message: message)
+        let m = message ?? getSwipeMessage(success: accessible)
+        return SwipeResult(success: accessible, message: m)
     }
 }

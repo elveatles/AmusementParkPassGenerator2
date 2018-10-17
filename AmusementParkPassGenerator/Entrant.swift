@@ -10,22 +10,37 @@ import Foundation
 
 /// Describes someone who can enter the park -- a guest, employee, manager, etc.
 struct Entrant {
+    /// How dates should be formatted for entrant fields
     static let dateFormatter: DateFormatter = {
         let result = DateFormatter()
         result.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
         return result
     }()
     
+    /// The maximum number of characters for firstName
     static let fistNameMaxLength = 100
+    /// The maximum number of characters for lastName
     static let lastNameMaxLength = 100
+    /// The maximum number of characters for company
     static let companyMaxLength = 100
+    /// The maximum number of characters for streetAddress
     static let streetAddressMaxLength = 100
+    /// The maximum number of characters for city
     static let cityMaxLength = 100
+    /// The number of characters for state
     static let stateLength = 2
+    /// The number of characters for project length
     static let projectNumberLength = 4
+    /// The number of characters for the first part of the zip code (before the dash)
     static let zipCodeLengthFirst = 5
+    /// Then number of characters for the second part of the zip code (after the dash)
     static let zipCodeLengthSecond = 4
+    /// Valid project numbers
+    static let validProjectNumbers: Set<Int> = [1001, 1002, 1003, 2001, 2002]
+    /// Valid company names
+    static let validCompanies: Set<String> = ["Acme", "Orkin", "Fedex", "NW Electrical"]
     
+    /// The subtype of the entrant
     let subtype: EntrantSubtype
     let dateOfBirth: Date?
     let ssn: (Int, Int, Int)?
@@ -42,7 +57,7 @@ struct Entrant {
     /**
      Get a date from a string in MM/dd/yyyy format.
      
-     - Parameter: date: The date string to convert.
+     - Parameter date: The date string to convert.
      - Returns: The date converted from the string. nil if the string was not formatted properly.
     */
     static func dateFrom(_ date: String) -> Date? {
@@ -142,10 +157,19 @@ struct Entrant {
      Initializer that's good for taking input from text fields and checking that they are formatted
      correctly and none of the fields are too long.
      
-     - Throws: `EntrantError.invalidFormat`
-                if any non-nil fields are formatted incorrectly.
+     - Throws:  `EntrantError.missingInformation`
+                if any required fields are nil, empty, or only contian whitespace.
                 `EntrantError.exceedsMaxLength`
                 if any of the non-nil fields are too long.
+                `EntrantError.invalidFormat`
+                if any non-nil fields are formatted incorrectly.
+                `EntrantError.wrongAge`
+                if the age is too old or too young depending on the subtype. Applies to child and senior guest passes.
+                `EntrantError.invalidProjectNumber`
+                if the project number is not recognized.
+                `EntrantError.invalidCompany`
+                if the company is not recognized.
+     
     */
     init(
         subtype: EntrantSubtype,
@@ -272,11 +296,11 @@ struct Entrant {
             self.projectNumber = nil
         }
         
-        self.company = company
-        self.firstName = firstName
-        self.lastName = lastName
-        self.streetAddress = streetAddress
-        self.city = city
+        self.company = String.nilOrTrimmed(company)
+        self.firstName = String.nilOrTrimmed(firstName)
+        self.lastName = String.nilOrTrimmed(lastName)
+        self.streetAddress = String.nilOrTrimmed(streetAddress)
+        self.city = String.nilOrTrimmed(city)
         
         // State
         if let st = state {
@@ -306,6 +330,8 @@ struct Entrant {
             throw EntrantError.invalidFormat(fields: badFormatFields)
         }
         
+        // Check for valid fields
+        
         // Check age
         if let dob = self.dateOfBirth, requiredInfo.contains(.dateOfBirth) {
             let now = Date()
@@ -321,6 +347,20 @@ struct Entrant {
                     throw EntrantError.wrongAge(description: "Entrant must be \(SeniorGuestPass.ageCutoff) or older. age: \(age)")
                 }
             }
+        }
+        
+        // Check project #
+        if let projNum = self.projectNumber,
+            requiredInfo.contains(.projectNumber),
+            !Entrant.validProjectNumbers.contains(projNum) {
+            throw EntrantError.invalidProjectNumber(value: projNum)
+        }
+        
+        // Check company
+        if let comp = self.company,
+            requiredInfo.contains(.company),
+            !Entrant.validCompanies.contains(comp) {
+            throw EntrantError.invalidCompany(value: comp)
         }
     }
 }
