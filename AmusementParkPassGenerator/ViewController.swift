@@ -202,6 +202,38 @@ class ViewController: UIViewController {
     }
     
     @IBAction func populateData() {
+        guard let subtype = selectedEntrantSubtype else {
+            return
+        }
+        
+        let required = subtype.requiredEntrantInfo
+        
+        // Date of birth
+        if required.contains(.dateOfBirth) {
+            var dateOfBirth = Date()
+            // Make sure the entrant is the right age if they are a child or a senior
+            switch subtype {
+            case .childGuest:
+                dateOfBirth = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
+            case .seniorGuest:
+                dateOfBirth = Calendar.current.date(byAdding: .year, value: -70, to: Date()) ?? Date()
+            default:
+                dateOfBirth = Calendar.current.date(byAdding: .year, value: -30, to: Date()) ?? Date()
+            }
+            dateOfBirthTextField.text = Entrant.dateFormatter.string(from: dateOfBirth)
+        } else {
+            dateOfBirthTextField.text = ""
+        }
+        
+        ssnTextField.text = required.contains(.ssn) ? "111-11-1111" : ""
+        projectNumberTextField.text = required.contains(.projectNumber) ? "1001" : ""
+        companyTextField.text = required.contains(.company) ? "Acme" : ""
+        firstNameTextField.text = required.contains(.firstName) ? "John" : ""
+        lastNameTextField.text = required.contains(.lastName) ? "Smith" : ""
+        streetAddressTextField.text = required.contains(.streetAddress) ? "1234 Elm St" : ""
+        cityTextField.text = required.contains(.city) ? "Los Angeles" : ""
+        stateTextField.text = required.contains(.state) ? "CA" : ""
+        zipCodeTextField.text = required.contains(.zipCode) ? "99999" : ""
     }
     
     /**
