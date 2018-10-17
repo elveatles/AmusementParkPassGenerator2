@@ -240,11 +240,10 @@ struct Entrant {
         var badFormatFields = Set<EntrantInfo>()
         
         // Date of birth
-        if let dob = dateOfBirth,
-            !dob.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            self.dateOfBirth = Entrant.dateFrom(dob)
+        if let dobValue = dateOfBirth {
+            self.dateOfBirth = Entrant.dateFrom(dobValue)
             
-            if self.dateOfBirth == nil {
+            if self.dateOfBirth == nil && requiredInfo.contains(.dateOfBirth) {
                 badFormatFields.insert(.dateOfBirth)
             }
         } else {
@@ -252,11 +251,10 @@ struct Entrant {
         }
         
         // SSN
-        if let ssnValue = ssn,
-            !ssnValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        if let ssnValue = ssn, !ssnValue.isNothing {
             self.ssn = Entrant.ssnFrom(ssnValue)
             
-            if self.ssn == nil {
+            if self.ssn == nil && requiredInfo.contains(.ssn) {
                 badFormatFields.insert(.ssn)
             }
         } else {
@@ -264,11 +262,10 @@ struct Entrant {
         }
         
         // Project #
-        if let projNum = projectNumber,
-            !projNum.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        if let projNum = projectNumber, !projNum.isNothing {
             self.projectNumber = Entrant.projectNumberFrom(projNum)
             
-            if self.projectNumber == nil {
+            if self.projectNumber == nil && requiredInfo.contains(.projectNumber) {
                 badFormatFields.insert(.projectNumber)
             }
         } else {
@@ -284,7 +281,7 @@ struct Entrant {
         // State
         if let st = state {
             let trimmed = st.trimmingCharacters(in: .whitespacesAndNewlines)
-            if trimmed.count != Entrant.stateLength {
+            if trimmed.count != Entrant.stateLength && requiredInfo.contains(.state) {
                 badFormatFields.insert(.state)
             }
             
@@ -298,7 +295,7 @@ struct Entrant {
             !zip.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             self.zipCode = Entrant.zipCodeFrom(zip)
             
-            if self.zipCode == nil {
+            if self.zipCode == nil && requiredInfo.contains(.zipCode) {
                 badFormatFields.insert(.zipCode)
             }
         } else {
@@ -310,7 +307,7 @@ struct Entrant {
         }
         
         // Check age
-        if let dob = self.dateOfBirth {
+        if let dob = self.dateOfBirth, requiredInfo.contains(.dateOfBirth) {
             let now = Date()
             let age = Calendar.current.dateComponents([.year], from: dob, to: now)
             
