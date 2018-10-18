@@ -37,6 +37,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var generatePassButton: UIButton!
     @IBOutlet weak var populateDataButton: UIButton!
     
+    /// The text field that is being edited
+    private var currentTextField: UITextField?
+    
     /// The selected entrant type.
     /// Updates the appearance of the entrant type buttons.
     /// Updates which entrant subtype buttons are displayed.
@@ -94,6 +97,10 @@ class ViewController: UIViewController {
         .vendor: [.vendor]
     ]
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -130,6 +137,36 @@ class ViewController: UIViewController {
         
         enableFields()
         generatePassButton.isEnabled = false
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        // Find first responder. Is there a better way?
+        guard let firstResponder = currentTextField else {
+            print("ViewController.keyboardWillShow: currentTextField is nil.")
+            return
+        }
+        
+        var firstResponderFrame = firstResponder.frame
+        // Convert first responder frame to global coordinates if it is a nested subview
+        if let firstResponderSuperView = firstResponder.superview, firstResponderSuperView != view {
+            firstResponderFrame = firstResponderSuperView.convert(firstResponder.frame, to: view)
+        }
+        
+        // Move view so text field is not hidden by the software keyboard
+        if let info = notification.userInfo, let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let frame = keyboardFrame.cgRectValue
+            if frame.intersects(firstResponderFrame) {
+                view.frame.origin.y = -frame.size.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        // Move view back to the origin
+        view.frame.origin.y = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -391,3 +428,22 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        currentTextField = textField
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // If textField is a FormattedTextField, call its matching delegate method
+        if let tf = textField as? FormattedTextField {
+            return tf.textField(tf, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
