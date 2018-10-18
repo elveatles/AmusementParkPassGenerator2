@@ -434,8 +434,10 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // If textField is a FormattedTextField, call its matching delegate method
+        // If textField is a FormattedTextField or a MaxLengthTextField, call its matching delegate method
         if let tf = textField as? FormattedTextField {
+            return tf.textField(tf, shouldChangeCharactersIn: range, replacementString: string)
+        } else if let tf = textField as? MaxLengthTextField {
             return tf.textField(tf, shouldChangeCharactersIn: range, replacementString: string)
         }
         
