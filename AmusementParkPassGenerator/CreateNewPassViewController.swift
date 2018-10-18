@@ -16,10 +16,18 @@ class CreateNewPassViewController: UIViewController {
     @IBOutlet weak var testResultsLabel: UILabel!
     @IBOutlet weak var testResultsBackground: UIView!
     
+    @IBOutlet weak var passBackground: UIView!
+    @IBOutlet weak var passImage: UIImageView!
+    @IBOutlet weak var passHole: UIView!
+    @IBOutlet weak var buttonsStackView0: UIStackView!
+    @IBOutlet weak var buttonsStackView1: UIStackView!
+    @IBOutlet weak var createNewPassButton: UIButton!
+    
     public let successSoundName = "AccessGranted"
     public let failSoundName = "AccessDenied"
     public let successColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     public let failColor = #colorLiteral(red: 0.9254902005, green: 0.3349699263, blue: 0.2380417806, alpha: 1)
+    private let standardBorderRadius: CGFloat = 4
     
     /// The current pass to show and test with
     public var pass: Pass?
@@ -29,6 +37,7 @@ class CreateNewPassViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        setupStyles()
         testResultsLabel.text = ""
     }
     
@@ -154,6 +163,33 @@ class CreateNewPassViewController: UIViewController {
         let percent = Int(result * 100.0)
         let message = "\(percent)% discount"
         showSwipeTest(success: success, message: message)
+    }
+    
+    /// Setup styling that could not be done in Storyboard
+    private func setupStyles() {
+        passBackground.layer.cornerRadius = 10
+        passBackground.layer.shadowRadius = 1
+        passBackground.layer.shadowColor = UIColor.black.cgColor
+        passBackground.layer.shadowOffset = CGSize(width: 1, height: 1)
+        passBackground.layer.shadowOpacity = 0.3
+        
+        passImage.layer.masksToBounds = true
+        passImage.layer.cornerRadius = standardBorderRadius
+        
+        passHole.layer.cornerRadius = 8
+        let _ = passHole.layer.addInnerShadow(innerOffset: CGSize(width: 0, height: 1), innerOpacity: 0.3)
+        
+        for case let button as UIButton in buttonsStackView0.arrangedSubviews {
+            button.layer.cornerRadius = standardBorderRadius
+        }
+        
+        for case let button as UIButton in buttonsStackView1.arrangedSubviews {
+            button.layer.cornerRadius = standardBorderRadius
+        }
+        
+        testResultsBackground.layer.cornerRadius = standardBorderRadius
+        let _ = testResultsBackground.layer.addInnerShadow(innerOffset: CGSize(width: 0, height: 1), innerOpacity: 0.3)
+        createNewPassButton.layer.cornerRadius = standardBorderRadius
     }
     
     /// If for some reason, pass is nil, a custom message will be shown in the test area.

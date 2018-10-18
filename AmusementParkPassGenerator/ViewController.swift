@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var zipCodeLabel: UILabel!
     @IBOutlet weak var zipCodeTextField: UITextField!
     @IBOutlet weak var generatePassButton: UIButton!
+    @IBOutlet weak var populateDataButton: UIButton!
     
     /// The selected entrant type.
     /// Updates the appearance of the entrant type buttons.
@@ -98,6 +99,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         styleTextFields()
+        // Style buttons
+        generatePassButton.layer.cornerRadius = 4
+        populateDataButton.layer.cornerRadius = 4
         
         // Assign entrant type buttons
         entrantTypeButtons = [
